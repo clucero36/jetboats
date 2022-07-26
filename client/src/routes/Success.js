@@ -41,10 +41,8 @@ const Success = () => {
         window.alert(message);
         return;
       }
-      console.log('Customer Session Response: ', response);
       const customerSession = await response.json();
-      // setSession(customerSession);
-      console.log('Customer Session Response JSON: ', customerSession)
+      setSession(customerSession.session);
     };
 
     // api call to recieve purchased item data
@@ -62,10 +60,8 @@ const Success = () => {
         window.alert(message);
         return;
       }
-      console.log('Line Items Response: ', response);
       const customerLineItems = await response.json();
-      // setLineItems(customerLineItems);
-      console.log('Line Items Reponse JSON: ',customerLineItems);
+      setLineItems(customerLineItems.lineItems.data);
     };
 
     getCustomerSession();
