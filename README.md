@@ -3,10 +3,11 @@ Current Features:
   - 3 Item Shop Display
   - Shopping Cart
   - Stripe Checkout Integration
-  - Success & Cancel Pages
+  - Shop, Checkout, Success, Cancel, Contact Pages
+  - Firebase Cloud Functions 
+  - Firestore Database
 
 Features to Implement:
-  - Firebase cloud functions & Firestore 
   - Remove Shop Items
   - Context API
   - Desktop View 

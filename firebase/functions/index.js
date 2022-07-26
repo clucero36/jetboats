@@ -57,6 +57,7 @@ exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
 exports.getSession = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', '*');
+  res.setHeader("Access-Control-Allow-Methods", "GET");
   const stripe = require("stripe")(functions.config().stripe.s_key);
   try {
     const session = await stripe.checkout.sessions.retrieve(req.headers.session_id);
@@ -70,6 +71,7 @@ exports.getSession = functions.https.onRequest(async (req, res) => {
 exports.getLineItems = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', '*');
+  res.set("Access-Control-Allow-Methods", "GET");
   const stripe = require("stripe")(functions.config().stripe.s_key);
   try {
     const lineItems = await stripe.checkout.sessions.listLineItems(req.headers.session_id);
@@ -78,3 +80,18 @@ exports.getLineItems = functions.https.onRequest(async (req, res) => {
     res.json({error: e.message});
   }
 })
+
+// expire a session when checkout is canceled
+exports.expireSession = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Headers', '*');
+  res.set("Access-Control-Allow-Methods", "POST");
+  const stripe = require("stripe")(functions.config().stripe.s_key);
+  try {
+    const session = await stripe.checkout.sessions.expire(req.headers.session_id);
+    res.send(session);
+  } catch (e) {
+    res.json({error: e.message});
+  }
+})
+
