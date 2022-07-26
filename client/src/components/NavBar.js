@@ -25,25 +25,24 @@ const NavBar = ({ cart }) => {
     setTotal(sum)
   }, [cart])
 
-  // Sends cart contents to server in exchange for a checkout url 
-  function onCheckout() {
-    console.log(JSON.stringify({cart: cart}))
-    // fetch('http://localhost:5000/create-checkout-session', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     cart: cart
-    //   })
-    // }).then(res => {
-    //   if (res.ok) return res.json()
-    //   return res.json().then(json => Promise.reject(json))
-    // }).then(({ url }) => {
-    //   window.location = url;
-    // }).catch(e => {
-    //   console.error(e.error);
-    // })
+  // Sends cart contents to cloud function in exchange for a checkout url 
+  async function onCheckout() {
+    const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/createCheckoutSession', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({cart: cart})
+    });
+    
+    if (!response.ok) {
+      const message = `An error occured: ${response.statusText}`
+      window.alert(message);
+      return;
+    }
+
+    let session_url = await response.json();
+    window.location = session_url.url;
   }
 
   return (

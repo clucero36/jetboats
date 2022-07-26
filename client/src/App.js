@@ -10,6 +10,7 @@ const App = () => {
   const [items, setItems] = useState([]);
   const [cart, setCart] = useState([]);
 
+  // Retrieve items from firestore 
   useEffect(() => {
     async function getItems() {
       const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/getFirestore')
