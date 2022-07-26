@@ -47,8 +47,34 @@ exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
       success_url: `${functions.config().stripe.client_url}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${functions.config().stripe.client_url}/cancel?session_id={CHECKOUT_SESSION_ID}`,
     });
-    res.send({url: await session.url})
+    res.send({url: await session.url});
   } catch (e) {
-    res.json({error: e.message})
+    res.json({error: e.message});
+  }
+})
+
+// request session id for checkout success page
+exports.getSession = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Headers', '*');
+  const stripe = require("stripe")(functions.config().stripe.s_key);
+  try {
+    const session = await stripe.checkout.sessions.retrieve(req.headers.session_id);
+    res.send({session: await session});
+  } catch (e) {
+    res.json({error: e.message});
+  }
+});
+
+// request items purchased for checkout success page
+exports.getLineItems = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  res.set('Access-Control-Allow-Headers', '*');
+  const stripe = require("stripe")(functions.config().stripe.s_key);
+  try {
+    const lineItems = await stripe.checkout.sessions.listLineItems(req.headers.session_id);
+    res.send({lineItems: await lineItems})
+  } catch (e) {
+    res.json({error: e.message});
   }
 })
