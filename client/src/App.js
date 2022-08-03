@@ -30,18 +30,18 @@ const App = () => {
   }, [])
 
   return (
-    <Box>
+    <>
       {
         items.length === 0 ? (
           <Box>Loading...</Box>
         ) : (
           <Box backgroundColor='' h='100vh'>
-            <NavBar cart={cart} />
+            <NavBar cart={cart} setCart={setCart}/>
             <ShopItems setCart={setCart} items={items}  />
           </Box>
         )
       }
-    </Box>
+    </>
   )
 }
 

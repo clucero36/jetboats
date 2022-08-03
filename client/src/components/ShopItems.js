@@ -1,41 +1,34 @@
 import React from 'react';
-import { Link as routerLink } from "react-router-dom";
 import {
   Box,
   Text,
   Image,
-  VStack,
   Button,
-  HStack,
   Heading,
-  Divider,
-  Link,
+  Grid,
+  GridItem,
 } from '@chakra-ui/react';
 
 // A single Shop Item
 const ShopItem = ({ item, updateCart }) => {
   return (
-    <Box shadow='dark-lg' p='2rem' borderRadius='md'>
-      <HStack>
-        <Image src='logo512.png' w={125}/>
-        <VStack w='12rem' spacing={1} align='left' pl='.5rem'>
-          <Text>{item.name}</Text>
-          <Text>${item.price_in_cents/100}</Text>
-          <Divider />
-          <HStack>
-            <Button
-              size='sm' 
-              h={39.9} 
-              variant='outline' 
-              onClick={() => {
-                updateCart([item])
-              }}>
-                Add to Cart
-            </Button>
-          </HStack>
-        </VStack>
-      </HStack>
-    </Box>
+    <GridItem colSpan='2' w='100%' align='center'>
+      <Box backgroundColor='gray.200'>
+        <Image src='logo512.png' h={155} p='1rem 0'/>
+        <Text fontWeight='bold'>{item.name}</Text>
+        <Text fontWeight='lighter'>${item.price_in_cents/100}</Text>
+        <Button
+          variant='shadow'
+          size='sm' 
+          mt='15px'
+          color='green.500'
+          onClick={() => {
+            updateCart([item])
+          }}>
+            Add to Cart
+        </Button>
+      </Box>
+    </GridItem>
   )
 }
 
@@ -61,13 +54,12 @@ const ShopItems = ({ setCart, items }) => {
 
   // Displayed to User
   return (
-    <>
-      <Heading align='center' pt='3rem'>Shop</Heading>
-      <VStack spacing='2.25rem' mt='2rem'>
+    <Box m='0 auto'>
+      <Heading align='center' p='3rem'>JBC Gear</Heading>
+      <Grid templateColumns='repeat(4, 1fr)' gap='10' w='80%' m='0 auto'>
         {renderedData}
-        <Link as={routerLink} to='/contact' size='sm'><Button>Contact</Button></Link> 
-      </VStack>
-    </>
+      </Grid>
+    </Box>
   )
 }
 
