@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   Box,
   Flex,
   Image,
   Button,
   Text,
-  Divider,
-  HStack,
   VStack,
   Heading,
   Drawer,
@@ -18,16 +16,18 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { IoCartOutline } from "react-icons/io5";
+import { CartContext } from '../Context';
 
 
-const NavBar = ({ cart, setCart }) => {
+const NavBar = () => {
 
+  const {cart, setCart} = useContext(CartContext)
   const [total, setTotal] = useState(0)
   const btnRef = React.useRef()
   const { isOpen, onOpen, onClose } = useDisclosure()
 
 
-  // hook finds the total items in cart on startup & each update of cart
+  // hook finds the total items in cart
   useEffect(() => {
     let sum = 0;
     cart.forEach((cItem) => {
@@ -74,23 +74,20 @@ const NavBar = ({ cart, setCart }) => {
           <DrawerContent backgroundColor='gray.200'>
             <DrawerCloseButton />
             <DrawerBody >
-              <Heading size='lg' m='5rem 0' align='center'>Your Cart</Heading>
+              <Text size='lg' m='1rem 0' align='center'>Cart</Text>
+              <Heading size='md' m='4rem 0'>Product List</Heading> 
               {
                 cart.length !== 0 
-                ? 
+                ?
                 cart.map((cItem) => {
-                  return (            
-                    <Flex key={cItem.item_id} justify='space-between' mt='10px'>
-                      <Text>
-                        {cItem.name}
-                      </Text>
-                      <HStack>
-                        <Divider orientation='vertical'/>
-                        <Text>
-                          x{cItem.quantity}
-                        </Text>
-                      </HStack>
-                    </Flex>
+                  return (
+                    <Box m='1rem 0' key={cItem.item_id}>
+                      <Flex justify='space-between' mt='10px'>
+                        <Text>{cItem.name}</Text>
+                        <Text> x{cItem.quantity}</Text>
+                      </Flex>
+                    </Box>            
+
                   )
                 })
                 : 

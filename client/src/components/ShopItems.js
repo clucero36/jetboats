@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   Box,
   Text,
@@ -8,17 +8,19 @@ import {
   Grid,
   GridItem,
 } from '@chakra-ui/react';
+import { CartContext } from '../Context';
 
 // A single Shop Item
 const ShopItem = ({ item, updateCart }) => {
   return (
-    <GridItem colSpan='2' w='100%' align='center'>
+    <GridItem colSpan='2' w='100%' align='center' minW='96px'>
       <Box backgroundColor='gray.200'>
         <Image src='logo512.png' h={155} p='1rem 0'/>
         <Text fontWeight='bold'>{item.name}</Text>
         <Text fontWeight='lighter'>${item.price_in_cents/100}</Text>
         <Button
-          variant='shadow'
+          variant='solid'
+          width='100%'
           size='sm' 
           mt='15px'
           color='green.500'
@@ -32,7 +34,9 @@ const ShopItem = ({ item, updateCart }) => {
   )
 }
 
-const ShopItems = ({ setCart, items }) => {
+const ShopItems = ({ items }) => {
+
+  const {setCart} = useContext(CartContext)
 
   // This function will be passed as a prop to each shop item.
   // When a user adds an item to their cart this function will be invoked

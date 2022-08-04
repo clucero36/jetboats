@@ -8,7 +8,6 @@ import ShopItems from './components/ShopItems';
 
 const App = () => {
   const [items, setItems] = useState([]);
-  const [cart, setCart] = useState([]);
 
   // Retrieve items from firestore 
   useEffect(() => {
@@ -36,8 +35,8 @@ const App = () => {
           <Box>Loading...</Box>
         ) : (
           <Box backgroundColor='' h='100vh'>
-            <NavBar cart={cart} setCart={setCart}/>
-            <ShopItems setCart={setCart} items={items}  />
+            <NavBar />
+            <ShopItems items={items} />
           </Box>
         )
       }
