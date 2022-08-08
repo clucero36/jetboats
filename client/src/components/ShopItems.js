@@ -20,7 +20,7 @@ const ShopItem = ({ item, updateCart }) => {
   let navigate = useNavigate();
   return (
     <GridItem colSpan='2' w='100%' align='center' minW='96px'>
-      <VStack backgroundColor='teal.700' border='.25px solid black' borderRadius='md'>
+      <VStack backgroundColor='teal.700' border='.5px solid black' borderRadius='md'>
         <Box align='left' w='100%' onClick={() => {
           navigate(`/item-detail?id=${item.item_id}`)
           }}
