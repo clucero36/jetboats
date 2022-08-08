@@ -34,7 +34,7 @@ const App = () => {
         items.length === 0 ? (
           <Box>Loading...</Box>
         ) : (
-          <Box h='100%' backgroundColor='teal.700'>
+          <Box h='100vh' backgroundColor='teal.700'>
             <NavBar />
             <ShopItems items={items} />
           </Box>
