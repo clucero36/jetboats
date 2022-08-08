@@ -13,7 +13,7 @@ const NavBar = () => {
       <Box w='100%' m='2rem 0' align='right'>       
         <ShoppingCart />
       </Box>
-      <Image src='image0.jpeg' borderRadius='full'/>
+      <Image src='jbLogo.jpeg' borderRadius='full'/>
     </Box>
   )
 }
