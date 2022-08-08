@@ -9,7 +9,9 @@ import {
   Heading,
   Grid,
   GridItem,
-  VStack
+  VStack,
+  HStack,
+  Spacer,
 } from '@chakra-ui/react';
 
 
@@ -17,22 +19,24 @@ import {
 const ShopItem = ({ item, updateCart }) => {
   let navigate = useNavigate();
   return (
-    <GridItem colSpan='2' w='100%' align='center' minW='96px' >
-      <VStack backgroundColor='gray.200'>
-        <Box w='100%' onClick={() => {
+    <GridItem colSpan='2' w='100%' align='center' minW='96px'>
+      <VStack backgroundColor='teal.700' border='.25px solid black' borderRadius='md'>
+        <Box align='left' w='100%' onClick={() => {
           navigate(`/item-detail?id=${item.item_id}`)
           }}
         >
-          <Image src={item.img} />
-          <Text fontWeight='bold'>{item.name}</Text>
-          <Text fontWeight='lighter'>${item.price_in_cents/100}</Text>
+          <Image src={item.img} borderRadius='md' />
+          <HStack p='0 .25rem'>
+            <Text fontWeight='bold'>{item.name}</Text>
+            <Spacer />
+            <Text fontWeight='bold'>${item.price_in_cents/100}</Text>
+          </HStack>
         </Box>
         <Button
           variant='solid'
           width='100%'
           size='sm' 
-          mt='15px'
-          color='green.500'
+          color='green.700'
           onClick={() => {
             updateCart([item])
           }}>
