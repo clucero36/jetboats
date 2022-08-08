@@ -6,8 +6,8 @@ Current Features:
   - Shop, Checkout, Success, Cancel, Contact Pages
   - Firebase Cloud Functions 
   - Firestore Database
+  - Context API
 
 Features to Implement:
-  - Remove Shop Items
-  - Context API
+  - Single Item Page 
   - Desktop View 

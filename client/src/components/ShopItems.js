@@ -1,4 +1,6 @@
 import React, { useContext } from 'react';
+import { CartContext } from '../Context';
+import { useNavigate } from 'react-router-dom';
 import {
   Box,
   Text,
@@ -7,17 +9,24 @@ import {
   Heading,
   Grid,
   GridItem,
+  VStack
 } from '@chakra-ui/react';
-import { CartContext } from '../Context';
+
 
 // A single Shop Item
 const ShopItem = ({ item, updateCart }) => {
+  let navigate = useNavigate();
   return (
-    <GridItem colSpan='2' w='100%' align='center' minW='96px'>
-      <Box backgroundColor='gray.200'>
-        <Image src='logo512.png' h={155} p='1rem 0'/>
-        <Text fontWeight='bold'>{item.name}</Text>
-        <Text fontWeight='lighter'>${item.price_in_cents/100}</Text>
+    <GridItem colSpan='2' w='100%' align='center' minW='96px' >
+      <VStack backgroundColor='gray.200'>
+        <Box w='100%' onClick={() => {
+          navigate(`/item-detail?id=${item.item_id}`)
+          }}
+        >
+          <Image src={item.img} />
+          <Text fontWeight='bold'>{item.name}</Text>
+          <Text fontWeight='lighter'>${item.price_in_cents/100}</Text>
+        </Box>
         <Button
           variant='solid'
           width='100%'
@@ -29,11 +38,11 @@ const ShopItem = ({ item, updateCart }) => {
           }}>
             Add to Cart
         </Button>
-      </Box>
+      </VStack>
     </GridItem>
   )
 }
-
+ 
 const ShopItems = ({ items }) => {
 
   const {setCart} = useContext(CartContext)
@@ -53,13 +62,19 @@ const ShopItems = ({ items }) => {
   
   // Array of ShopItems
   const renderedData = items.map((item) => {
-    return <ShopItem item={item} key={item.item_id} updateCart={updateCart}/>
+    return (
+      <ShopItem 
+        item={item} 
+        key={item.item_id} 
+        updateCart={updateCart} 
+      />
+    )
   })
 
   // Displayed to User
   return (
-    <Box m='0 auto'>
-      <Heading align='center' p='3rem'>JBC Gear</Heading>
+    <Box p='1rem 0'>
+      <Heading align='center' m='.75rem 0'>JBC Gear</Heading>
       <Grid templateColumns='repeat(4, 1fr)' gap='10' w='80%' m='0 auto'>
         {renderedData}
       </Grid>
