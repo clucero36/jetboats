@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { CartContext } from '../Context';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Box,
@@ -10,8 +9,6 @@ import {
   Grid,
   GridItem,
   VStack,
-  HStack,
-  Spacer,
 } from '@chakra-ui/react';
 
 
@@ -19,24 +16,25 @@ import {
 const ShopItem = ({ item, updateCart }) => {
   let navigate = useNavigate();
   return (
-    <GridItem colSpan='2' w='100%' align='center' minW='96px'>
-      <VStack backgroundColor='teal.700' border='.5px solid black' borderRadius='md'>
+    <GridItem colSpan='2' w='100%' minW='96px' borderRadius='full' boxShadow='dark-lg'>
+      <VStack backgroundColor='orange.100' >
         <Box align='left' w='100%' onClick={() => {
           navigate(`/item-detail?id=${item.item_id}`)
           }}
         >
           <Image src={item.img} borderRadius='md' />
-          <HStack p='0 .25rem'>
+          <Box pl='.25rem'>
             <Text fontWeight='bold'>{item.name}</Text>
-            <Spacer />
-            <Text fontWeight='bold'>${item.price_in_cents/100}</Text>
-          </HStack>
+            <Text>${item.price_in_cents/100}</Text>
+          </Box>
         </Box>
         <Button
+          _hover={{backgroundColor: 'black'}}
+          backgroundColor='orange.800'
+          color='orange.50'
           variant='solid'
           width='100%'
           size='sm' 
-          color='green.700'
           onClick={() => {
             updateCart([item])
           }}>
@@ -47,9 +45,7 @@ const ShopItem = ({ item, updateCart }) => {
   )
 }
  
-const ShopItems = ({ items }) => {
-
-  const {setCart} = useContext(CartContext)
+const ShopItems = ({ items, setCart }) => {
 
   // This function will be passed as a prop to each shop item.
   // When a user adds an item to their cart this function will be invoked
@@ -77,8 +73,8 @@ const ShopItems = ({ items }) => {
 
   // Displayed to User
   return (
-    <Box p='1rem 0'>
-      <Heading align='center' m='.75rem 0'>JBC Gear</Heading>
+    <Box p='1rem 0' backgroundColor='orange.100' borderRadius='xl' m='0 .5rem'>
+      <Heading align='center' m='.75rem 0' color='orange.800' fontFamily='Lucida Console'>JBC Gear</Heading>
       <Grid templateColumns='repeat(4, 1fr)' gap='10' w='80%' m='0 auto'>
         {renderedData}
       </Grid>
