@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import {CartContext} from '../Context';
 import {
   Button,
   Text,
@@ -17,10 +18,11 @@ import {
 import { IoCartOutline } from "react-icons/io5";
 
 
-const ShoppingCart = ({ cart, setCart }) => {
+const ShoppingCart = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const {cart, setCart} = useContext(CartContext);
   const [total, setTotal] = useState(0)
   const btnRef = React.useRef()
-  const { isOpen, onOpen, onClose } = useDisclosure()
 
   // hook finds the total items in cart
   useEffect(() => {

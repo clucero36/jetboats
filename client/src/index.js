@@ -13,19 +13,22 @@ import Cancel from './routes/Cancel';
 import Contact from './routes/Contact';
 import ItemDetail from './routes/ItemDetail';
 import ForceLightMode from './components/ForceLightMode';
+import Context from './Context';
 
 ReactDOM.render( 
   <ChakraProvider theme={overrides}>
-    <ForceLightMode>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<App />} />
-          <Route path='/success' element={<Success />} />
-          <Route path='/cancel' element={<Cancel />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/item-detail' element={<ItemDetail />} />
-        </Routes>
-      </BrowserRouter>
-    </ForceLightMode>
+    <Context>
+      <ForceLightMode>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<App />} />
+            <Route path='/success' element={<Success />} />
+            <Route path='/cancel' element={<Cancel />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/item-detail' element={<ItemDetail />} />
+          </Routes>
+        </BrowserRouter>
+      </ForceLightMode>
+    </Context>
   </ChakraProvider>, 
 document.querySelector('#root'));

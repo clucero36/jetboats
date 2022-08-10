@@ -6,12 +6,12 @@ import {
 import ShoppingCart from './ShoppingCart';
 
 
-const NavBar = ({ cart, setCart }) => {
+const NavBar = () => {
 
   return (
     <Box p='2rem 0' w='80%' m='0 auto'>
       <Box pb='2rem' align='right'>       
-        <ShoppingCart cart={cart} setCart={setCart}/>
+        <ShoppingCart />
       </Box>
       <Image src='jbLogo.jpeg' borderRadius='full'/>
     </Box>

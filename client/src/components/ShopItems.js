@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { CartContext } from '../Context';
 import {
   Box,
   Text,
@@ -12,16 +13,18 @@ import {
 } from '@chakra-ui/react';
 
 
+
 // A single Shop Item
 const ShopItem = ({ item, updateCart }) => {
   let navigate = useNavigate();
+
+  const toDetail = () => {
+    navigate('/item-detail', {state: {item: item}});
+  }
   return (
     <GridItem colSpan='2' w='100%' minW='96px' borderRadius='full' boxShadow='dark-lg'>
       <VStack backgroundColor='orange.100' >
-        <Box align='left' w='100%' onClick={() => {
-          navigate(`/item-detail?id=${item.item_id}`)
-          }}
-        >
+        <Box align='left' w='100%' onClick={toDetail}>
           <Image src={item.img} borderRadius='md' />
           <Box pl='.25rem'>
             <Text fontWeight='bold'>{item.name}</Text>
@@ -45,7 +48,8 @@ const ShopItem = ({ item, updateCart }) => {
   )
 }
  
-const ShopItems = ({ items, setCart }) => {
+const ShopItems = ({ items }) => {
+  const {setCart} = useContext(CartContext);
 
   // This function will be passed as a prop to each shop item.
   // When a user adds an item to their cart this function will be invoked
