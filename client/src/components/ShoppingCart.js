@@ -38,7 +38,6 @@ const ShoppingCart = ({ cart, setCart }) => {
     setCart([])
   }
 
-
   // Sends cart contents to cloud function in exchange for a checkout url
   async function onCheckout() {
     const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/createCheckoutSession', {

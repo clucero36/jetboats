@@ -15,6 +15,7 @@ const ItemDetail = () => {
         <ShoppingCart />
       </Box>
       <Text>Item Detail</Text>
+      <Text>{item_id}</Text>
     </Box>
   )
 }
