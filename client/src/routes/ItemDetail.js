@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState, useRef } from 'react';
+import React, { useContext, useState } from 'react';
 import { CartContext } from '../Context';
 import { useLocation } from "react-router-dom"
 import {
@@ -6,6 +6,10 @@ import {
   Text,
   Image,
   Button,
+  VStack,
+  HStack,
+  Radio,
+  RadioGroup,
 } from '@chakra-ui/react';
 import ShoppingCart from '../components/ShoppingCart';
 
@@ -13,17 +17,9 @@ import ShoppingCart from '../components/ShoppingCart';
 const ItemDetail = () => {
   const {setCart} = useContext(CartContext);
   const location = useLocation();
-  const [imgHeight, setImgHeight] = useState(null);
-  const imgRef = useRef();
   const item = location.state.item;
+  const [size, setSize] = useState()
 
-  function setImageHeight() {
-    setImgHeight(imgRef.current.clientHeight);
-  }
-
-  useEffect(() => {
-    imgRef.current.addEventListener('load', setImageHeight)
-  })
 
   function updateCart(value) {
     return setCart((prev) => {
@@ -36,37 +32,47 @@ const ItemDetail = () => {
     })
   }
 
+  console.log(size);
 
   return (
-    <>
-      <Box backgroundColor='orange.50'>
-        <Box w='95%' align='right' m='2rem auto' pos='absolute' zIndex={1}>
-          <ShoppingCart />
-        </Box>
-        <Image ref={imgRef} src={item.img} pos='absolute' id='img'/>
+    <Box>
+      <Box w='95%' align='right' m='2rem auto' pos='absolute'>
+        <ShoppingCart />
       </Box>
-      <Box borderRadius='2xl' backgroundColor='white' w='100%' pos='absolute' zIndex={1} mt={imgHeight-25} >
-        <Box p='1rem'>
-          <Text>Item Detail</Text>
-          <Text>{item.name}</Text>
-          <Text>${item.price_in_cents/100}</Text>
-          <Text>item.details</Text>
-          <Button
-            _hover={{backgroundColor: 'black'}}
-            backgroundColor='orange.800'
-            color='orange.50'
-            variant='solid'
-            width='100%'
-            size='sm' 
-            onClick={() => {
-              updateCart([item])
-            }}
-          >
-              Add to Cart
-        </Button>
+      <VStack direction='column' spacing={-5} maxW='50rem'>
+        <Image src={item.img} />
+        <Box w='100%' backgroundColor='white' borderRadius='2xl' p='1rem'>
+          <VStack w='100%' spacing={25}>
+            <Text color='orange.800' fontWeight='bold'>Item Details</Text>
+            <RadioGroup size='md' colorScheme='green' onChange={setSize} value={size}>
+              <HStack direction='row' spacing={45}>
+              {
+                item.sizes.map((itemSize) => {
+                  return <Radio key={itemSize} value={itemSize}>{itemSize}</Radio>
+                })
+              }
+              </HStack>
+            </RadioGroup>
+            <Text fontWeight='25'>JBC {item.name}</Text>
+            <Text>${item.price_in_cents/100}</Text>
+            <Text>100% Cotton & Manufactured in the USA</Text>
+            <Button
+              _hover={{backgroundColor: 'black'}}
+              backgroundColor='orange.800'
+              color='orange.50'
+              variant='solid'
+              width='100%'
+              size='sm' 
+              onClick={() => {
+                updateCart([item])
+              }}
+            >
+                Add to Cart
+            </Button>
+          </VStack>
         </Box>
-      </Box>
-    </>
+      </VStack>
+    </Box>
   )
 }
 
