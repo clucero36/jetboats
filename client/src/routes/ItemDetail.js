@@ -98,8 +98,6 @@ const ItemDetail = () => {
                   Select Size to Add to Cart
                 </Button>
               )
-
-
             }
           </VStack>
         </Box>
