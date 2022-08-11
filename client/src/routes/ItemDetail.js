@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../Context';
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import {
   Box,
   Text,
@@ -10,7 +10,10 @@ import {
   HStack,
   Radio,
   RadioGroup,
+  Spacer,
+  IconButton,
 } from '@chakra-ui/react';
+import { IoArrowBack } from "react-icons/io5";
 import ShoppingCart from '../components/ShoppingCart';
 
 
@@ -19,6 +22,7 @@ const ItemDetail = () => {
   const location = useLocation();
   const item = location.state.item;
   const [size, setSize] = useState()
+  let navigate = useNavigate();
 
 
   function updateCart(value) {
@@ -36,8 +40,18 @@ const ItemDetail = () => {
 
   return (
     <Box>
-      <Box w='95%' align='right' m='2rem auto' pos='absolute'>
-        <ShoppingCart />
+      <Box w='100%' align='right' m='2rem auto' pos='absolute'>
+        <HStack w='100%' p='0 1rem'>
+          <IconButton 
+            onClick={() => {navigate(-1)}}
+            icon={<IoArrowBack />}
+            size='sm'
+            backgroundColor='orange.100'
+          >
+          </IconButton>
+          <Spacer />
+          <ShoppingCart />
+        </HStack>
       </Box>
       <VStack direction='column' spacing={-5} maxW='50rem'>
         <Image src={item.img} />
