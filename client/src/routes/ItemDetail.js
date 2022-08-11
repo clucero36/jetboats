@@ -21,10 +21,11 @@ const ItemDetail = () => {
   const {setCart} = useContext(CartContext);
   const location = useLocation();
   const item = location.state.item;
-  const [size, setSize] = useState()
+  const [size, setSize] = useState(null)
   let navigate = useNavigate();
 
 
+  // When a user adds an item to their cart this function will be invoked
   function updateCart(value) {
     return setCart((prev) => {
       let matchingItem = [...prev].find((item) => item.item_id === value[0].item_id)
@@ -35,8 +36,6 @@ const ItemDetail = () => {
       return [...prev].concat(value)
     })
   }
-
-  console.log(size);
 
   return (
     <Box>
@@ -72,19 +71,36 @@ const ItemDetail = () => {
               <Text>${item.price_in_cents/100}</Text>
               <Text>100% Cotton & Manufactured in the USA</Text>
             </VStack>
-            <Button
-              _hover={{backgroundColor: 'black'}}
-              backgroundColor='orange.800'
-              color='orange.50'
-              variant='solid'
-              width='100%'
-              size='sm' 
-              onClick={() => {
-                updateCart([item])
-              }}
-            >
-                Add to Cart
-            </Button>
+            {
+              size !== null ? (
+                <Button
+                  _hover={{backgroundColor: 'black'}}
+                  backgroundColor='orange.800'
+                  color='orange.50'
+                  variant='solid'
+                  width='100%'
+                  size='sm' 
+                  onClick={() => {
+                    updateCart([item])
+                  }}
+                >
+                    Add to Cart
+                </Button>
+              ) : (
+                <Button
+                  _hover={{backgroundColor: 'red'}}
+                  backgroundColor='gray'
+                  color='red.800'
+                  variant='solid'
+                  width='100%'
+                  size='sm' 
+                >
+                  Select Size to Add to Cart
+                </Button>
+              )
+
+
+            }
           </VStack>
         </Box>
       </VStack>

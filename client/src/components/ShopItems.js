@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CartContext } from '../Context';
 import {
   Box,
   Text,
@@ -15,16 +14,17 @@ import {
 
 
 // A single Shop Item
-const ShopItem = ({ item, updateCart }) => {
+const ShopItem = ({ item }) => {
   let navigate = useNavigate();
 
   const toDetail = () => {
     navigate('/item-detail', {state: {item: item}});
   }
+
   return (
-    <GridItem colSpan='2' w='100%' minW='96px' borderRadius='full' boxShadow='dark-lg'>
+    <GridItem colSpan='2' w='100%' minW='96px' borderRadius='full' boxShadow='dark-lg' >
       <VStack backgroundColor='orange.100' >
-        <Box align='left' w='100%' onClick={toDetail}>
+        <Box align='left' w='100%'>
           <Image src={item.img} borderRadius='md' />
           <Box pl='.25rem'>
             <Text fontWeight='bold'>{item.name}</Text>
@@ -38,10 +38,8 @@ const ShopItem = ({ item, updateCart }) => {
           variant='solid'
           width='100%'
           size='sm' 
-          onClick={() => {
-            updateCart([item])
-          }}>
-            Add to Cart
+          onClick={toDetail}>
+            Item Details
         </Button>
       </VStack>
     </GridItem>
@@ -49,20 +47,19 @@ const ShopItem = ({ item, updateCart }) => {
 }
  
 const ShopItems = ({ items }) => {
-  const {setCart} = useContext(CartContext);
 
   // This function will be passed as a prop to each shop item.
   // When a user adds an item to their cart this function will be invoked
-  function updateCart(value) {
-    return setCart((prev) => {
-      let matchingItem = [...prev].find((item) => item.item_id === value[0].item_id)
-      if (matchingItem) {
-        matchingItem.quantity +=1;
-        return [...prev]
-      }
-      return [...prev].concat(value)
-    })
-  }
+  // function updateCart(value) {
+  //   return setCart((prev) => {
+  //     let matchingItem = [...prev].find((item) => item.item_id === value[0].item_id)
+  //     if (matchingItem) {
+  //       matchingItem.quantity +=1;
+  //       return [...prev]
+  //     }
+  //     return [...prev].concat(value)
+  //   })
+  // }
   
   // Array of ShopItems
   const renderedData = items.map((item) => {
@@ -70,7 +67,6 @@ const ShopItems = ({ items }) => {
       <ShopItem 
         item={item} 
         key={item.item_id} 
-        updateCart={updateCart} 
       />
     )
   })
@@ -79,7 +75,7 @@ const ShopItems = ({ items }) => {
   return (
     <Box p='1rem 0' backgroundColor='orange.100' borderRadius='xl' m='0 .5rem'>
       <Heading align='center' m='.75rem 0' color='orange.800' fontFamily='Lucida Console'>JBC Gear</Heading>
-      <Grid templateColumns='repeat(4, 1fr)' gap='10' w='80%' m='0 auto'>
+      <Grid templateColumns='repeat(2, 1fr)' gap='10' w='80%' m='0 auto'>
         {renderedData}
       </Grid>
     </Box>
