@@ -67,9 +67,11 @@ const ItemDetail = () => {
               }
               </HStack>
             </RadioGroup>
-            <Text fontWeight='25'>JBC {item.name}</Text>
-            <Text>${item.price_in_cents/100}</Text>
-            <Text>100% Cotton & Manufactured in the USA</Text>
+            <VStack align='left' w='100%'>
+              <Text fontWeight='25'>JBC {item.name}</Text>
+              <Text>${item.price_in_cents/100}</Text>
+              <Text>100% Cotton & Manufactured in the USA</Text>
+            </VStack>
             <Button
               _hover={{backgroundColor: 'black'}}
               backgroundColor='orange.800'

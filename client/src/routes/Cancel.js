@@ -40,13 +40,17 @@ const Cancel = () => {
 
   return (
     <>
-      <Box backgroundColor='gray.300' mt='10rem' mr='1rem' ml='1rem'>
+      <Box backgroundColor='orange.100' mt='10rem' mr='1rem' ml='1rem'>
         <VStack h='15rem' align='center' justify='center'>
-          <Heading>Order Canceled</Heading>
+          <Heading color='orange.900'>Order Canceled</Heading>
         </VStack>
-        <HStack justify='center'>
-          <Link as={routerLink} to='/'><Button>Return To Shop</Button></Link>
-          <Link as={routerLink} to='/contact'><Button>Contact</Button></Link> 
+        <HStack justify='center' pb='2rem'>
+          <Link as={routerLink} to='/'>
+            <Button backgroundColor='orange.50' color='orange.900' _hover={{backgroundColor: 'black'}}>Return To Shop</Button>
+          </Link>
+          <Link as={routerLink} to='/contact'>
+            <Button backgroundColor='orange.50' color='orange.900' _hover={{backgroundColor: 'black'}}>Contact</Button>
+          </Link> 
         </HStack>
       </Box>
     </>
