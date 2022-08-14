@@ -6,7 +6,8 @@ import {
   Box,
   Flex,
   VStack,
-  Heading,
+  HStack,
+  Spacer,
   Drawer,
   DrawerBody,
   DrawerFooter,
@@ -14,17 +15,20 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  Divider,
 } from '@chakra-ui/react';
 import { IoCartOutline } from "react-icons/io5";
 
-
+// Shopping Cart Component
+// Renders a toggleable drawer where:
+// users can view the product, size, & quantity of items they desire to purchase. 
+// users can checkout or they can clear their cart.
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 const ShoppingCart = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const {cart, setCart} = useContext(CartContext);
-  const [total, setTotal] = useState(0)
-  const btnRef = React.useRef()
+  const { isOpen, onOpen, onClose } = useDisclosure() // chakra ui custom hook used to toggle shopping cart
+  const {cart, setCart} = useContext(CartContext);    // global state keeps track of users shopping cart 
+  const [total, setTotal] = useState(0)               // total items in cart
 
-  // hook finds the total items in cart
   useEffect(() => {
     let sum = 0;
     cart.forEach((cItem) => {
@@ -32,13 +36,6 @@ const ShoppingCart = () => {
     })
     setTotal(sum)
   }, [cart])
-
-  function clearCart() {
-    cart.forEach((cItem) => {
-      cItem.quantity = 1;
-    })
-    setCart([])
-  }
 
   // Sends cart contents to cloud function in exchange for a checkout url
   async function onCheckout() {
@@ -60,36 +57,51 @@ const ShoppingCart = () => {
     window.location = session_url.url;
   }
 
+  console.log(cart);
+
   return (
     <>
-      <Button onClick={onOpen} ref={btnRef} rightIcon={<IoCartOutline />} size='sm' backgroundColor='orange.100'>
+      <Button onClick={onOpen} rightIcon={<IoCartOutline />} size='sm' backgroundColor='orange.100'>
         <Text color='orange.800'>{total}</Text>
       </Button>
       <Drawer
         isOpen={isOpen}
         placement='right'
         onClose={onClose}
-        finalFocusRef={btnRef}
         size='xs'
       >
         <DrawerOverlay />
         <DrawerContent backgroundColor='orange.50'>
           <DrawerCloseButton />
           <DrawerBody >
-            <Text size='lg' m='1rem 0' align='center'>Cart</Text>
-            <Heading size='md' m='4rem 0' color='orange.800'>Product List</Heading> 
+            <Text m='4rem 0 1.75rem 0' align='center' color='orange.800' fontWeight='bold' fontSize='xl'>Cart</Text>
+            {
+              cart.length !== 0 
+              ? 
+              <Box mb='2rem'>
+                <HStack>
+                  <Text>Product: Size</Text>
+                  <Spacer />
+                  <Text>Quantity</Text>
+                </HStack>
+                <Divider />
+              </Box>
+              : <span></span>
+            }
             {
               cart.length !== 0 
               ?
-              cart.map((cItem) => {
+              cart.map((cItem, index) => {
                 return (
-                  <Box m='1rem 0' key={cItem.item_id}>
+                  <Box m='1rem 0' key={index}>
                     <Flex justify='space-between' mt='10px'>
-                      <Text color='orange.900'>{cItem.name}</Text>
+                      <HStack>
+                        <Text color='orange.900'>{cItem.name}:</Text>
+                        <Text color='orange.900'>{cItem.purchaseSize}</Text>
+                      </HStack>
                       <Text color='orange.900'> x{cItem.quantity}</Text>
                     </Flex>
                   </Box>            
-
                 )
               })
               : 
@@ -102,7 +114,7 @@ const ShoppingCart = () => {
               ?
               <VStack w='100%' spacing={5}>
                 <Button w='100%' variant='outline' borderColor='green.500' color='green.500'  onClick={onCheckout} size='sm' mt='.5rem'>Checkout</Button> 
-                <Button w='100%' variant='outline' borderColor='red.500' color='red.500' onClick={clearCart} size='sm' mt='.5rem'>Clear Cart</Button>
+                <Button w='100%' variant='outline' borderColor='red.500' color='red.500' onClick={() => setCart([])} size='sm' mt='.5rem'>Clear Cart</Button>
               </VStack> 
               : <span></span>
             }

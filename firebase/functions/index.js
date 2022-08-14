@@ -38,6 +38,9 @@ exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
             currency: 'usd',
             product_data: {
               name: cItem.name,
+              metadata: {
+                size: cItem.purchaseSize,
+              },
             },
             unit_amount: cItem.price_in_cents,
           },

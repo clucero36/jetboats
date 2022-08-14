@@ -16,24 +16,36 @@ import {
 import { IoArrowBack } from "react-icons/io5";
 import ShoppingCart from '../components/ShoppingCart';
 
-
+// ItemDetail Page
+//
+// users view, in detail, a single shop item & are able to add to their cart. 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 const ItemDetail = () => {
-  const {setCart} = useContext(CartContext);
-  const location = useLocation();
+
+  const {setCart} = useContext(CartContext);  // global state function used to set cart data 
+  const location = useLocation();             // location object used to access state from ShopItems component
   const item = location.state.item;
-  const [size, setSize] = useState(null)
-  let navigate = useNavigate();
+  const [size, setSize] = useState(null)      // size of item to be purchased
+  let navigate = useNavigate();               // hook allows user to navigate through different pages of the application
 
 
   // When a user adds an item to their cart this function will be invoked
+  // -we create a deep copy of the item to be added to the cart & set its purchase size(sm, md, etc..)
+  // -if we find an item in the cart w/ the same name & same size, a shallow copy of the matching cart item is made & we add 1 to it's quantity field.
+  // -otherwise we push the deep copy into the cart.
+  // *we require deep copies of shopItem objects to be pushed into the cart so cartItems dont don't reference shopItems*
   function updateCart(value) {
+    let pItem = JSON.parse(JSON.stringify(value[0]));
+    pItem.purchaseSize = size;
     return setCart((prev) => {
-      let matchingItem = [...prev].find((item) => item.item_id === value[0].item_id)
+      let matchingItem = [...prev].find((item) => 
+        item.name === pItem.name && item.purchaseSize === pItem.purchaseSize
+      )
       if (matchingItem) {
-        matchingItem.quantity +=1;
+        matchingItem.quantity += 1;
         return [...prev]
       }
-      return [...prev].concat(value)
+      return [...prev].concat(pItem)
     })
   }
 

@@ -5,7 +5,9 @@ import {
 } from '@chakra-ui/react';
 import ShoppingCart from './ShoppingCart';
 
-
+// NavBar Component
+// renders shopping cart component & company logo
+// ----------------------------------------------------------------
 const NavBar = () => {
 
   return (

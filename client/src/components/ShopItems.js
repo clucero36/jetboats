@@ -12,11 +12,42 @@ import {
 } from '@chakra-ui/react';
 
 
+// ShopItems Component
+// renders all items being sold. 
+// --------------------------------------------------------------------------------------------------------------
+const ShopItems = ({ items }) => {
+  
+  // Array of ShopItems
+  const renderedShopItems = items.map((item) => {
+    return (
+      <ShopItem 
+        item={item} 
+        key={item.item_id} 
+      />
+    )
+  })
 
-// A single Shop Item
+  // Displayed to User
+  return (
+    <Box p='1rem 0' backgroundColor='orange.100' borderRadius='xl' m='0 .5rem'>
+      <Heading align='center' m='.75rem 0' color='orange.800' fontFamily='Lucida Console'>JBC Gear</Heading>
+      <Grid templateColumns='repeat(2, 1fr)' gap='10' w='80%' m='0 auto'>
+        {renderedShopItems}
+      </Grid>
+    </Box>
+  )
+}
+export default ShopItems;
+
+
+// ShopItem Component
+// renders a single item card
+// users are displayed an item image, price, name, & button to navigate to item details pagee
+// --------------------------------------------------------------------------------------------------------------
 const ShopItem = ({ item }) => {
-  let navigate = useNavigate();
+  let navigate = useNavigate(); // hook allows user to navigate through different pages of th application
 
+  // toDetail() sends user to item-data page & provides item as state
   const toDetail = () => {
     navigate('/item-detail', {state: {item: item}});
   }
@@ -46,40 +77,3 @@ const ShopItem = ({ item }) => {
   )
 }
  
-const ShopItems = ({ items }) => {
-
-  // This function will be passed as a prop to each shop item.
-  // When a user adds an item to their cart this function will be invoked
-  // function updateCart(value) {
-  //   return setCart((prev) => {
-  //     let matchingItem = [...prev].find((item) => item.item_id === value[0].item_id)
-  //     if (matchingItem) {
-  //       matchingItem.quantity +=1;
-  //       return [...prev]
-  //     }
-  //     return [...prev].concat(value)
-  //   })
-  // }
-  
-  // Array of ShopItems
-  const renderedData = items.map((item) => {
-    return (
-      <ShopItem 
-        item={item} 
-        key={item.item_id} 
-      />
-    )
-  })
-
-  // Displayed to User
-  return (
-    <Box p='1rem 0' backgroundColor='orange.100' borderRadius='xl' m='0 .5rem'>
-      <Heading align='center' m='.75rem 0' color='orange.800' fontFamily='Lucida Console'>JBC Gear</Heading>
-      <Grid templateColumns='repeat(2, 1fr)' gap='10' w='80%' m='0 auto'>
-        {renderedData}
-      </Grid>
-    </Box>
-  )
-}
-
-export default ShopItems;

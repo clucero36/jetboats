@@ -6,8 +6,12 @@ import {
 import NavBar from './components/NavBar';
 import ShopItems from './components/ShopItems';
 
+// App.js 
+//  
+// renders home page that consists of navbar & shopItems
+// --------------------------------------------------------------------------------------------------------------
 const App = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([]); // array of items to be passed to ShopItems component
 
   // Retrieve items from firestore 
   useEffect(() => {
