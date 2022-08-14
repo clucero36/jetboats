@@ -57,8 +57,6 @@ const ShoppingCart = () => {
     window.location = session_url.url;
   }
 
-  console.log(cart);
-
   return (
     <>
       <Button onClick={onOpen} rightIcon={<IoCartOutline />} size='sm' backgroundColor='orange.100'>
