@@ -5,15 +5,12 @@ import {
   Text,
   Button,
   VStack,
-  Heading,
   Image,
-  Icon,
   HStack,
   Divider,
   Spacer,
   Link,
 } from '@chakra-ui/react'
-import { AiOutlineCheckSquare } from 'react-icons/ai'
 
 
 const Success = () => {
@@ -69,19 +66,20 @@ const Success = () => {
     return;
   }, [session_id]);
 
+  console.log(lineItems);
+
   return (
-    <Box>
+    <Box backgroundColor='orange.50' h='100vh' pos='absolute'>
       {
         session === null ? (<Box>Loading...</Box>) : 
         (
           <>
-            <Box h='6rem' mt='1.5rem'>
-              <Image src='logo512.png' w={75} ml='2rem'/>
+            <Box w='80%' m='1rem auto'>
+              <Image src='jbLogo.jpeg' borderRadius='full' />
             </Box>
-            <Box h='42rem' mt='1.5rem' backgroundColor='gray.400' mr='1rem' ml='1rem' borderRadius='sm'>
-              <VStack spacing={15}>
-                <Icon as={AiOutlineCheckSquare} boxSize={155} mt={15} color='green'/>
-                <Heading align='center'>Purchase Confirmed</Heading>
+            <Box backgroundColor='orange.100' m='1rem' p='1rem' borderRadius='sm' color='orange.900'>
+              <VStack spacing='1rem'>
+                <Text fontSize='2xl' align='center'>Purchase Confirmed</Text>
                 { 
                   lineItems.map((item) => {
                     return (
@@ -91,11 +89,11 @@ const Success = () => {
                           <Spacer />
                           <Text>${(item.amount_subtotal)/100}</Text>
                         </HStack>
-                        <Divider />
                       </VStack>
                     )
                   })
                 }
+                <Divider />
                 <HStack w='80%'>
                   <Text>Total: </Text>
                   <Spacer />
@@ -106,13 +104,15 @@ const Success = () => {
                   <Text>A confirmation e-mail has been sent to {session.customer_details.email} & your order will be shipped as soon as possible.</Text>
                   <Text>Feel free to contact me with any questions regarding your purchase.</Text>
                 </VStack>
+                <HStack justify='center' spacing={10}>
+                  <Link as={routerLink} to='/'>
+                    <Button backgroundColor='orange.50' color='orange.900' size='sm'>Return To Shop</Button>
+                  </Link>
+                  <Link as={routerLink} to='/contact'>
+                    <Button backgroundColor='orange.50' color='orange.900' size='sm'>Contact</Button>
+                  </Link> 
+                </HStack>
               </VStack>
-            </Box>
-            <Box h='6rem' mt='1.5rem'>
-              <HStack justify='center' spacing={10}>
-                <Link as={routerLink} to='/'><Button>Return To Shop</Button></Link>
-                <Link as={routerLink} to='/contact'><Button>Contact</Button></Link> 
-              </HStack>
             </Box>
           </>
         )

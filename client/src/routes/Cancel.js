@@ -17,7 +17,7 @@ import {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------
 const Cancel = () => {
 
-  const [searchParams] = useSearchParams();
+  const [searchParams] = useSearchParams(); // react router hook gives us access to url parameters
   const session_id = searchParams.get('session_id');
 
   useEffect(() => {

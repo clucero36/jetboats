@@ -77,7 +77,7 @@ exports.getLineItems = functions.https.onRequest(async (req, res) => {
   res.set("Access-Control-Allow-Methods", "GET");
   const stripe = require("stripe")(functions.config().stripe.s_key);
   try {
-    const lineItems = await stripe.checkout.sessions.listLineItems(req.headers.session_id);
+    const lineItems = await stripe.checkout.sessions.listLineItems(req.headers.session_id, {expand: ['data.price.product']});
     res.send({lineItems: await lineItems})
   } catch (e) {
     res.json({error: e.message});
