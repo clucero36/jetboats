@@ -7,7 +7,6 @@ import {
   VStack,
   Image,
   HStack,
-  Divider,
   Spacer,
   Link,
 } from '@chakra-ui/react'
@@ -79,22 +78,22 @@ const Success = () => {
             </Box>
             <Box backgroundColor='orange.100' m='1rem' p='1rem' borderRadius='sm' color='orange.900'>
               <VStack spacing='1rem'>
-                <Text fontSize='2xl' align='center'>Purchase Confirmed</Text>
+                <Text fontSize='2xl' align='center' m='1rem 0'>Purchase Confirmed</Text>
                 { 
                   lineItems.map((item) => {
                     return (
                       <VStack key={item.id} w='80%'>
                         <HStack w='100%'>
-                          <Text>{item.quantity}x {item.description}</Text>
+                          <Text>{item.quantity}x {item.description}:</Text>
+                          <Text>{item.price.product.metadata.size}</Text>
                           <Spacer />
                           <Text>${(item.amount_subtotal)/100}</Text>
                         </HStack>
                       </VStack>
                     )
                   })
-                }
-                <Divider />
-                <HStack w='80%'>
+                }              
+                <HStack w='80%' borderTop='.25px solid black'>
                   <Text>Total: </Text>
                   <Spacer />
                   <Text>${session.amount_subtotal/100}</Text>
