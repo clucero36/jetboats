@@ -4,13 +4,17 @@ import {
   Box,
   Link,
   VStack,
-  Heading,
+  Text,
   HStack,
   Button,
 } from '@chakra-ui/react'
 
 
-
+// Cancel Page
+//
+// an order is canceled if a user goes 'back' during checkout phase
+// the checkout session is expired on component render
+// ---------------------------------------------------------------------------------------------------------------------------------------------------
 const Cancel = () => {
 
   const [searchParams] = useSearchParams();
@@ -39,22 +43,23 @@ const Cancel = () => {
   }, [session_id]);
 
   return (
-    <>
-      <Box backgroundColor='orange.100' mt='10rem' mr='1rem' ml='1rem'>
-        <VStack h='15rem' align='center' justify='center'>
-          <Heading color='orange.900'>Order Canceled</Heading>
+    <Box backgroundColor='orange.50' pos='absolute' h='100vh' w='100%'>
+      <Box backgroundColor='orange.100' m='16rem auto' p='3rem 0' w='90%'>
+        <VStack justify='space-between' h='15rem'>
+          <Text fontSize='2xl' color='orange.900'>Order Canceled</Text>
+          <HStack justify='center'>
+            <Link as={routerLink} to='/'>
+              <Button backgroundColor='orange.50' color='orange.900' size='sm'>Return To Shop</Button>
+            </Link>
+            <Link as={routerLink} to='/contact'>
+              <Button backgroundColor='orange.50' color='orange.900' size='sm'>Contact</Button>
+            </Link> 
+          </HStack>
         </VStack>
-        <HStack justify='center' pb='2rem'>
-          <Link as={routerLink} to='/'>
-            <Button backgroundColor='orange.50' color='orange.900' _hover={{backgroundColor: 'black'}}>Return To Shop</Button>
-          </Link>
-          <Link as={routerLink} to='/contact'>
-            <Button backgroundColor='orange.50' color='orange.900' _hover={{backgroundColor: 'black'}}>Contact</Button>
-          </Link> 
-        </HStack>
       </Box>
-    </>
+    </Box>
   )
 }
+
 
 export default Cancel;

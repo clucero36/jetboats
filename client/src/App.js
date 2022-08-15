@@ -11,9 +11,9 @@ import ShopItems from './components/ShopItems';
 // renders home page that consists of navbar & shopItems
 // --------------------------------------------------------------------------------------------------------------
 const App = () => {
-  const [items, setItems] = useState([]); // array of items to be passed to ShopItems component
+  const [items, setItems] = useState([]); // items being sold
 
-  // Retrieve items from firestore 
+  // Retrieve items from firestore databse
   useEffect(() => {
     async function getItems() {
       const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/getFirestore')
