@@ -31,7 +31,7 @@ const ShopItems = ({ items }) => {
   return (
     <Box p='1rem 0' backgroundColor='orange.100' borderRadius='xl' m='0 .5rem'>
       <Heading align='center' m='.75rem 0' color='orange.800' fontFamily='Lucida Console'>JBC Gear</Heading>
-      <Grid templateColumns='repeat(2, 1fr)' gap='10' w='80%' m='0 auto'>
+      <Grid templateColumns='repeat(2, 1fr)' gap='10' w={['80%','80%','80%', '50%']} m='0 auto'>
         {renderedShopItems}
       </Grid>
     </Box>
@@ -53,7 +53,7 @@ const ShopItem = ({ item }) => {
   }
 
   return (
-    <GridItem colSpan='2' w='100%' minW='96px' borderRadius='full' boxShadow='dark-lg' >
+    <GridItem colSpan='2' w={['100%', '100%', '100%', '70%']} minW='96px' borderRadius='full' boxShadow='dark-lg' m='0 auto'>
       <VStack backgroundColor='orange.100' >
         <Box align='left' w='100%'>
           <Image src={item.img} borderRadius='md' />

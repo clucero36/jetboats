@@ -50,8 +50,8 @@ const ItemDetail = () => {
   }
 
   return (
-    <Box>
-      <Box w='100%' align='right' m='2rem auto' pos='absolute'>
+    <Box backgroundColor='orange.50' h='100vh'>
+      <Box w='100%' m='2rem auto' pos='absolute'>
         <HStack w='100%' p='0 1rem'>
           <IconButton 
             onClick={() => {navigate(-1)}}
@@ -64,56 +64,59 @@ const ItemDetail = () => {
           <ShoppingCart />
         </HStack>
       </Box>
-      <VStack direction='column' spacing={-5} maxW='50rem'>
-        <Image src={item.img} />
-        <Box w='100%' backgroundColor='white' borderRadius='2xl' p='1rem'>
-          <VStack w='100%' spacing={25}>
-            <Text color='orange.800' fontWeight='bold'>Item Details</Text>
-            <RadioGroup size='md' colorScheme='green' onChange={setSize} value={size}>
-              <HStack direction='row' spacing={45}>
+      <Box backgroundColor='orange.50' pt={['1.75rem', '1.75rem', '4rem']} h='100%'>
+        <VStack direction='column' m='0 auto' maxW='488' boxShadow='xl'  spacing={-7}>
+          <Image src={item.img}/>
+          <Box w='100%' backgroundColor='orange.50' borderRadius='2xl' >
+            <VStack w='100%' spacing={25}>
+              <Text color='orange.800' fontWeight='bold'>Item Details</Text>
+              <RadioGroup size='md' colorScheme='green' onChange={setSize} value={size}>
+                <HStack direction='row' spacing={45}>
+                {
+                  item.sizes.map((itemSize) => {
+                    return <Radio key={itemSize} value={itemSize}>{itemSize}</Radio>
+                  })
+                }
+                </HStack>
+              </RadioGroup>
+              <VStack align='left' w='95%'>
+                <Text fontWeight='25'>JBC {item.name}</Text>
+                <Text>${item.price_in_cents/100}</Text>
+                <Text>100% Cotton & Manufactured in the USA</Text>
+              </VStack>
               {
-                item.sizes.map((itemSize) => {
-                  return <Radio key={itemSize} value={itemSize}>{itemSize}</Radio>
-                })
+                size !== null ? (
+                  <Button
+                    _hover={{backgroundColor: 'black'}}
+                    backgroundColor='orange.800'
+                    color='orange.50'
+                    variant='solid'
+                    width='100%'
+                    size='sm' 
+                    onClick={() => {
+                      updateCart([item])
+                    }}
+                  >
+                      Add to Cart
+                  </Button>
+                ) : (
+                  <Button
+                    _hover={{backgroundColor: 'red'}}
+                    backgroundColor='gray'
+                    color='red.800'
+                    variant='solid'
+                    width='100%'
+                    size='sm' 
+                  >
+                    Select Size to Add to Cart
+                  </Button>
+                )
               }
-              </HStack>
-            </RadioGroup>
-            <VStack align='left' w='100%'>
-              <Text fontWeight='25'>JBC {item.name}</Text>
-              <Text>${item.price_in_cents/100}</Text>
-              <Text>100% Cotton & Manufactured in the USA</Text>
             </VStack>
-            {
-              size !== null ? (
-                <Button
-                  _hover={{backgroundColor: 'black'}}
-                  backgroundColor='orange.800'
-                  color='orange.50'
-                  variant='solid'
-                  width='100%'
-                  size='sm' 
-                  onClick={() => {
-                    updateCart([item])
-                  }}
-                >
-                    Add to Cart
-                </Button>
-              ) : (
-                <Button
-                  _hover={{backgroundColor: 'red'}}
-                  backgroundColor='gray'
-                  color='red.800'
-                  variant='solid'
-                  width='100%'
-                  size='sm' 
-                >
-                  Select Size to Add to Cart
-                </Button>
-              )
-            }
-          </VStack>
-        </Box>
-      </VStack>
+          </Box>
+        </VStack>
+      </Box>
+
     </Box>
   )
 }

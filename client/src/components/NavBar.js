@@ -15,7 +15,7 @@ const NavBar = () => {
       <Box pb='2rem' align='right'>       
         <ShoppingCart />
       </Box>
-      <Image src='jbLogo.jpeg' borderRadius='full'/>
+      <Image src='jbLogo.jpeg' borderRadius='full' boxSize={['100%', '100%', '100%', '60%']} m='0 auto'/>
     </Box>
   )
 }

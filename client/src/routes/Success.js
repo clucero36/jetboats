@@ -68,15 +68,15 @@ const Success = () => {
   console.log(lineItems);
 
   return (
-    <Box backgroundColor='orange.50' h='100vh' pos='absolute'>
+    <Box backgroundColor='orange.50' h='100vh'>
       {
         session === null ? (<Box>Loading...</Box>) : 
         (
           <>
-            <Box w='80%' m='1rem auto'>
-              <Image src='jbLogo.jpeg' borderRadius='full' />
+            <Box p='2rem 0' w='80%' m='0 auto' align='center'>
+              <Image boxSize={['100%', '100%', '100%', '60%']} src='jbLogo.jpeg' borderRadius='full' />
             </Box>
-            <Box backgroundColor='orange.100' m='1rem' p='1rem' borderRadius='sm' color='orange.900'>
+            <Box backgroundColor='orange.100' m='.5rem auto' p='1rem' borderRadius='sm' color='orange.900' w={['100%', '100%', '100%', '60%']}>
               <VStack spacing='1rem'>
                 <Text fontSize='2xl' align='center' m='1rem 0'>Purchase Confirmed</Text>
                 { 
