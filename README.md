@@ -1,4 +1,5 @@
 E-Commerce Application Built With Node & React. Built off a stripe tutorial to create a fullstack e-commerce application. 
+
 Current Features: 
   - Item Shop Display
   - Shopping Cart Drawer
@@ -7,6 +8,5 @@ Current Features:
   - Firebase Cloud Functions 
   - Firestore Database
   - Context API
-
-Features to Implement: 
   - Desktop View 
+
