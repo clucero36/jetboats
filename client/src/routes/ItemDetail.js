@@ -116,7 +116,6 @@ const ItemDetail = () => {
           </Box>
         </VStack>
       </Box>
-
     </Box>
   )
 }
