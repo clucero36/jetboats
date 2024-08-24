@@ -1,8 +1,9 @@
-
+import ProductCard from "../ui/productcard";
 
 export default async function Page({ searchParams }) {
 
-  console.log(searchParams);
+  const shopItemName = searchParams.id;
+  var shopItems;
 
   try {
     const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/getFirestore');
@@ -19,9 +20,11 @@ export default async function Page({ searchParams }) {
     console.log(e.message);
   }
 
+  const currShopItem = shopItems.find((item) => item.name === shopItemName);
+
   return (
     <div>
-      Product Page
+      <ProductCard shopItem={currShopItem} />
     </div>
   )
 }
