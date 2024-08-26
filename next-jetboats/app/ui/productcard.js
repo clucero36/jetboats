@@ -27,6 +27,7 @@ export default function ProductCard({shopItem}) {
     <div>
       <div>{shopItem.name}</div>
       <div>{shopItem.description}</div>
+      <div>${shopItem.price_in_cents/100}</div>
       <div>
         {
           <RadioGroup  className='flex' value={size} onChange={setSize} aria-label="Server size">
@@ -44,10 +45,7 @@ export default function ProductCard({shopItem}) {
           </RadioGroup>
         }
       </div>
-      <button onClick={() => {
-        updateCart([shopItem])
-        }}
-      >
+      <button onClick={ () => {updateCart([shopItem])} }>
         Add to Cart
       </button>
     </div>

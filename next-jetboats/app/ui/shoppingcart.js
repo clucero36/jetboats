@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { CartContext } from '../context';
@@ -9,7 +9,18 @@ import Image from 'next/image';
 export default function ShoppingCart() {
   const [open, setOpen] = useState(false)
   const {cart, setCart} = useContext(CartContext);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  useEffect(() => {
+    let price = 0;
+    cart.forEach((cItem) => {
+      price += (cItem.price_in_cents/100)*cItem.quantity;
+    })
+    setTotalPrice(price);
+  }, [cart])
+
   console.log(cart);
+
 
   return (
     <>
@@ -60,13 +71,15 @@ export default function ShoppingCart() {
                                   className="h-full w-full object-cover object-center"
                                 />
                               </div>
-
                               <div className="ml-4 flex flex-1 flex-col">
                                 <div>
                                   <div className="flex justify-between text-base font-medium text-gray-900">
+                                    <h3>
+                                      <div>{product.name}</div>
+                                    </h3>
                                     <p className="ml-4">${product.price_in_cents/100}</p>
                                   </div>
-                                  <p className="mt-1 text-sm text-gray-500">{product.color}</p>
+                                  <p className="mt-1 text-sm text-gray-500">{product.purchaseSize}</p>
                                 </div>
                                 <div className="flex flex-1 items-end justify-between text-sm">
                                   <p className="text-gray-500">Qty {product.quantity}</p>
@@ -82,7 +95,7 @@ export default function ShoppingCart() {
                   <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                     <div className="flex justify-between text-base font-medium text-gray-900">
                       <p>Subtotal</p>
-                      <p>$262.00</p>
+                      <p>${totalPrice}</p>
                     </div>
                     <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
@@ -98,10 +111,10 @@ export default function ShoppingCart() {
                         or{' '}
                         <button
                           type="button"
-                          onClick={() => setOpen(false)}
+                          onClick={() => setCart([])}
                           className="font-medium text-indigo-600 hover:text-indigo-500"
                         >
-                          Continue Shopping
+                          Clear Cart
                           <span aria-hidden="true"> &rarr;</span>
                         </button>
                       </p>
