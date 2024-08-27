@@ -20,9 +20,6 @@ export default function ShoppingCart() {
     setTotalPrice(price);
   }, [cart])
 
-  console.log(cart);
-
-
   return (
     <>
       <button onClick={() => setOpen(true)}>
