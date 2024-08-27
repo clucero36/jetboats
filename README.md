@@ -30,4 +30,4 @@ To Simulate an Unsuccessful Checkout:
 
 TO DO:
 
-Next.js App router Refactor
+- Stream Project Cards
