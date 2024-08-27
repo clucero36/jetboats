@@ -10,6 +10,10 @@ Current Features:
   - Context API
   - Desktop View 
 
+TO DO:
+
+- Stream Project Cards
+
 To Simulate a Successful Checkout:
 
 | Brand | Card Number | CVC | Date |
@@ -24,10 +28,3 @@ To Simulate an Unsuccessful Checkout:
 | Brand | Card Number | Error Code | Decline Code |
 | ------------- | ------------- | ------------- | ------------- |
 | Generic Decline  | 4000000000000002 | card_declined | generic_decline |
-
-
-
-
-TO DO:
-
-- Stream Project Cards
