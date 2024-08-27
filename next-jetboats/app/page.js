@@ -1,5 +1,5 @@
 import { nerko_one } from '@/app/ui/fonts';
-import Proudcts from "./ui/products"
+import Products from "./ui/products"
 import Image from "next/image"
 
 
@@ -14,11 +14,11 @@ export default function Home() {
         />
         <div className="mx-auto max-w-md px-6 lg:px-8">
           <div className="mx-auto lg:mx-0 text-center">
-            <h2 className="text-4xl font-bold tracking-tight text-white sm:text-6xl "><span className={nerko_one.className}>Jet Boat Classifieds</span></h2>
+            <h2 className="text-6xl font-bold tracking-tight text-white "><span className={nerko_one.className}>Jet Boat Classifieds</span></h2>
           </div>
         </div>
       </div>
-      <Proudcts />
+      <Products />
     </main>
   )
 }
