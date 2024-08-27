@@ -68,7 +68,7 @@ export default function ShoppingCart() {
                       <div className="flow-root">
                         <ul role="list" className="-my-6 divide-y divide-gray-200">
                           {cart.map((product) => (
-                            <li key={product.item_id} className="flex py-6">
+                            <li key={product.item_id + totalQuantity} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                 <img
                                   alt={product.description}
@@ -104,12 +104,22 @@ export default function ShoppingCart() {
                     </div>
                     <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                     <div className="mt-6">
-                      <button
-                        onClick={() => Checkout(cart)}
-                        className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-                      >
-                        Checkout
-                      </button>
+                      {
+                        cart.length === 0 ?
+                        <button
+                          className="flex items-center justify-center rounded-md border border-transparent bg-gray-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                          disabled
+                        >
+                          Checkout
+                        </button>
+                        :
+                        <button
+                          onClick={() => Checkout(cart)}
+                          className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+                        >
+                          Checkout
+                        </button>
+                      }
                     </div>
                     <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
                       <p>

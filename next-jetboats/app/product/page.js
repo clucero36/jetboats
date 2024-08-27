@@ -21,6 +21,7 @@ export default async function Page({ searchParams }) {
   }
 
   const currShopItem = shopItems.find((item) => item.name === shopItemName);
+  currShopItem.img = currShopItem.img.replace('jpeg', 'webp')
 
   return (
     <div>

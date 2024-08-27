@@ -5,11 +5,11 @@ import { useContext, useState } from 'react';
 import { CartContext } from '../context';
 import { Fragment } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
-import { Tab, TabGroup, TabList, TabPanel, TabPanels, Field, Radio, RadioGroup } from '@headlessui/react'
+import { Tab, TabGroup, TabList, TabPanel, TabPanels, Radio, RadioGroup } from '@headlessui/react'
 
 export default function ProductCard({shopItem}) {
   const [size, setSize] = useState(null)
-  const {cart, setCart} = useContext(CartContext);  
+  const {setCart} = useContext(CartContext);  
   const faqs = [
     {
       question: 'What format are these icons?',
@@ -113,7 +113,7 @@ export default function ProductCard({shopItem}) {
             <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
               <Image 
                 alt={shopItem.description} 
-                src={shopItem.image}
+                src={`/${shopItem.img}`}
                 className="object-cover object-center"
                 width={1000}
                 height={1300}
@@ -138,7 +138,7 @@ export default function ProductCard({shopItem}) {
                       <Radio
                         key={size}
                         value={size}
-                        className='cursor-pointer bg-white text-gray-900 shadow-sm group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none focus:ring focus:ring-indigo-500 sm:flex-1 sm:py-6'
+                        className='cursor-pointer bg-white text-gray-900 shadow-sm group relative flex items-center justify-center rounded-md border px-4 py-3 text-sm font-medium uppercase hover:bg-gray-50  data-[checked]:bg-indigo-200  focus:outline-none focus:ring focus:ring-indigo-500 sm:flex-1 sm:py-6'
                       >
                         <span>{size}</span>
                       </Radio>
@@ -146,8 +146,6 @@ export default function ProductCard({shopItem}) {
                   </RadioGroup>
                 </fieldset>
               </div>
-
-
                 <h2 id="information-heading" className="sr-only">
                   Product information
                 </h2>
@@ -178,13 +176,23 @@ export default function ProductCard({shopItem}) {
             <p className="mt-6 text-gray-500">{shopItem.description}</p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
-              <button
-                onClick={() => {updateCart([shopItem])}}
-                type="button"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
-              >
-                Pay ${shopItem.price_in_cents/100}
-              </button>
+              {
+                size ? 
+                <button
+                  onClick={() => {updateCart([shopItem])}}
+                  type="button"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                >
+                  Pay ${shopItem.price_in_cents/100}
+                </button>
+                :
+                <button 
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-600 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+                  disabled
+                >
+                  Pay ${shopItem.price_in_cents/100}
+                </button>
+              }
             </div>
 
             <div className="mt-10 border-t border-gray-200 pt-10">
