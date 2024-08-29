@@ -81,8 +81,6 @@ export default function ProductCard({shopItem}) {
       </ul>
     `,
   }
-  
-  console.log(shopItem)
 
   function updateCart(value) {
     let pItem = JSON.parse(JSON.stringify(value[0]));
@@ -112,6 +110,7 @@ export default function ProductCard({shopItem}) {
           <div className="lg:col-span-4 lg:row-end-1">
             <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
               <Image 
+                priority
                 alt={shopItem.description} 
                 src={`/${shopItem.img}`}
                 className="object-cover object-center"
@@ -125,7 +124,10 @@ export default function ProductCard({shopItem}) {
           <div className="mx-auto mt-14 max-w-2xl sm:mt-16 lg:col-span-3 lg:row-span-2 lg:row-end-2 lg:mt-0 lg:max-w-none">
             <div className="flex flex-col-reverse">
               <div className="mt-4">
-                <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{shopItem.name}</h1>
+                <div className='flex gap-16'>
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{shopItem.name}</h1>
+                  <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">${shopItem.price_in_cents/100}</h2>
+                </div>
                 <div className="mt-10">
 
                 <fieldset aria-label="Choose a size" className="mt-4">

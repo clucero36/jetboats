@@ -8,6 +8,7 @@ export default function Home() {
     <main>
       <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
         <Image
+          priority
           width={2000}
           height={1000}
           alt=""

@@ -1,8 +1,7 @@
-import Link from "next/link";
 import { data } from "../lib/data";
 import Image from "next/image";
 
-export default async function Proudcts() {
+export default function Proudcts() {
 
   return (
     <div className="mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8">

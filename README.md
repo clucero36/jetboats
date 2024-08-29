@@ -19,9 +19,6 @@ To Simulate a Successful Checkout:
 | Brand | Card Number | CVC | Date |
 | ------------- | ------------- | ------------- | ------------- |
 | Visa  | 4242424242424242 | Any 3 digits | Any Future Date |
-| Visa (Debit) | 4000056655665556 | Any 3 digits | Any Future Date |
-| Mastercard  | 5555555555554444 | Any 3 digits | Any Future Date |
-
 
 To Simulate an Unsuccessful Checkout: 
 
