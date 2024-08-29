@@ -17,24 +17,24 @@ const products = [
     quantity: 1,
     sizes: '{"sm", "md", "lg"}',
   },
-  {
-    name: 'Earthen Bottle',
-    description: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
-    img: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
-    id: '0.0.3',
-    price_in_cents: '4800',
-    quantity: 1,
-    sizes: '{"24oz", "32oz"}',
-  },
-  {
-    name: 'Nomad Tumbler',
-    description: 'Olive drab green insulated bottle with flared screw lid and flat top.',
-    img: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
-    id: '0.0.4',
-    price_in_cents: '3500',
-    quantity: 1,
-    sizes: '{"10oz", "20oz"}',
-  }
+  // {
+  //   name: 'Earthen Bottle',
+  //   description: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+  //   img: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
+  //   id: '0.0.3',
+  //   price_in_cents: '4800',
+  //   quantity: 1,
+  //   sizes: '{"24oz", "32oz"}',
+  // },
+  // {
+  //   name: 'Nomad Tumbler',
+  //   description: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+  //   img: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
+  //   id: '0.0.4',
+  //   price_in_cents: '3500',
+  //   quantity: 1,
+  //   sizes: '{"10oz", "20oz"}',
+  // }
 ]
 
 const faqs = [
