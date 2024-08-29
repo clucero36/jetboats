@@ -15,6 +15,7 @@ export default async function Page({ searchParams }) {
     }
 
     shopItems = await response.json();
+    console.log(shopItems);
 
   } catch (e) {
     console.log(e.message);
