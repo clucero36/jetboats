@@ -65,8 +65,8 @@ export default function ShoppingCart() {
                     <div className="mt-8">
                       <div className="flow-root">
                         <ul role="list" className="-my-6 divide-y divide-gray-200">
-                          {cart.map((product) => (
-                            <li key={product.item_id + totalQuantity} className="flex py-6">
+                          {cart.map((product, index) => (
+                            <li key={index} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
                                 <img
                                   alt={product.description}
