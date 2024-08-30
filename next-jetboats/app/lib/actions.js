@@ -14,8 +14,7 @@ export async function Checkout(cart) {
   
   if (!response.ok) {
     const message = `An error occured: ${response.statusText}`
-    window.alert(message);
-    return;
+    return message;
   }
 
   let session_url = await response.json();
