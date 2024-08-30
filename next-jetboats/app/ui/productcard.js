@@ -7,51 +7,10 @@ import { Fragment } from 'react'
 import { StarIcon } from '@heroicons/react/20/solid'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels, Radio, RadioGroup } from '@headlessui/react'
 
-export default function ProductCard({shopItem}) {
+export default function ProductCard({currProduct, currReviews, currFaqs}) {
+
   const [size, setSize] = useState(null)
   const {setCart} = useContext(CartContext);  
-  const faqs = [
-    {
-      question: 'What format are these icons?',
-      answer:
-        'The icons are in SVG (Scalable Vector Graphic) format. They can be imported into your design tool of choice and used directly in code.',
-    },
-    {
-      question: 'Can I use the icons at different sizes?',
-      answer:
-        "Yes. The icons are drawn on a 24 x 24 pixel grid, but the icons can be scaled to different sizes as needed. We don't recommend going smaller than 20 x 20 or larger than 64 x 64 to retain legibility and visual balance.",
-    },
-  ]
-  const reviews = {
-    average: 4,
-    featured: [
-      {
-        id: 1,
-        rating: 5,
-        content: `
-          <p>This icon pack is just what I need for my latest project. There's an icon for just about anything I could ever need. Love the playful look!</p>
-        `,
-        date: 'July 16, 2021',
-        datetime: '2021-07-16',
-        author: 'Emily Selman',
-        avatarSrc:
-          'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-      },
-      {
-        id: 2,
-        rating: 5,
-        content: `
-          <p>Blown away by how polished this icon pack is. Everything looks so consistent and each SVG is optimized out of the box so I can use it directly with confidence. It would take me several hours to create a single icon this good, so it's a steal at this price.</p>
-        `,
-        date: 'July 12, 2021',
-        datetime: '2021-07-12',
-        author: 'Hector Gibbons',
-        avatarSrc:
-          'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=256&h=256&q=80',
-      },
-      // More reviews...
-    ],
-  }
   const license = {
     href: '#',
     summary:
@@ -111,8 +70,8 @@ export default function ProductCard({shopItem}) {
             <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
               <Image 
                 priority
-                alt={shopItem.description} 
-                src={`/${shopItem.img}`}
+                alt={currProduct.description} 
+                src={`${currProduct.img}`}
                 className="object-cover object-center"
                 width={1000}
                 height={1300}
@@ -125,8 +84,8 @@ export default function ProductCard({shopItem}) {
             <div className="flex flex-col-reverse">
               <div className="mt-4">
                 <div className='flex gap-16'>
-                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{shopItem.name}</h1>
-                  <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">${shopItem.price_in_cents/100}</h2>
+                  <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{currProduct.name}</h1>
+                  <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">${currProduct.price_in_cents/100}</h2>
                 </div>
                 <div className="mt-10">
 
@@ -136,7 +95,7 @@ export default function ProductCard({shopItem}) {
                     onChange={setSize}
                     className="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4"
                   >
-                    {shopItem.sizes.map((size) => (
+                    {currProduct.sizes.map((size) => (
                       <Radio
                         key={size}
                         value={size}
@@ -165,34 +124,34 @@ export default function ProductCard({shopItem}) {
                       key={rating}
                       aria-hidden="true"
                       className={classNames(
-                        reviews.average > rating ? 'text-yellow-400' : 'text-gray-300',
+                        4 > rating ? 'text-yellow-400' : 'text-gray-300',
                         'h-5 w-5 flex-shrink-0',
                       )}
                     />
                   ))}
                 </div>
-                <p className="sr-only">{reviews.average} out of 5 stars</p>
+                <p className="sr-only">4 out of 5 stars</p>
               </div>
             </div>
 
-            <p className="mt-6 text-gray-500">{shopItem.description}</p>
+            <p className="mt-6 text-gray-500">{currProduct.description}</p>
 
             <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-4 sm:grid-cols-2">
               {
                 size ? 
                 <button
-                  onClick={() => {updateCart([shopItem])}}
+                  onClick={() => {updateCart([currProduct])}}
                   type="button"
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                 >
-                  Pay ${shopItem.price_in_cents/100}
+                  Pay ${currProduct.price_in_cents/100}
                 </button>
                 :
                 <button 
                   className="flex w-full items-center justify-center rounded-md border border-transparent bg-gray-600 px-8 py-3 text-base font-medium text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-50"
                   disabled
                 >
-                  Pay ${shopItem.price_in_cents/100}
+                  Pay ${currProduct.price_in_cents/100}
                 </button>
               }
             </div>
@@ -204,7 +163,7 @@ export default function ProductCard({shopItem}) {
                   {/* {product.highlights.map((highlight) => (
                     <li key={highlight}>{highlight}</li>
                   ))} */}
-                  {shopItem.description}
+                  {currProduct.description}
                 </ul>
               </div>
             </div>
@@ -277,8 +236,8 @@ export default function ProductCard({shopItem}) {
                 <TabPanel className="-mb-10">
                   <h3 className="sr-only">Customer Reviews</h3>
 
-                  {reviews.featured.map((review, reviewIdx) => (
-                    <div key={review.id} className="flex space-x-4 text-sm text-gray-500">
+                  {currReviews.map((review, reviewIdx) => (
+                    <div key={reviewIdx} className="flex space-x-4 text-sm text-gray-500">
                       <div className="flex-none py-10">
                         <img alt="" src={review.avatarSrc} className="h-10 w-10 rounded-full bg-gray-100" />
                       </div>
@@ -315,7 +274,7 @@ export default function ProductCard({shopItem}) {
                   <h3 className="sr-only">Frequently Asked Questions</h3>
 
                   <dl>
-                    {faqs.map((faq) => (
+                    {currFaqs.map((faq) => (
                       <Fragment key={faq.question}>
                         <dt className="mt-10 font-medium text-gray-900">{faq.question}</dt>
                         <dd className="prose prose-sm mt-2 max-w-none text-gray-500">
