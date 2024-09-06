@@ -1,31 +1,35 @@
 import ProductCard from "../ui/productcard";
-import { products, reviews, faqs } from "../lib/data";
 
-export default function Page({ searchParams }) {
+export default async function Page({ searchParams }) {
 
   const shopItemName = searchParams.name;
-  const currProduct = products.find((product) => product.name === shopItemName);
-  const currReviews = reviews.filter((review) => review.productId === currProduct.id);
-  const currFaqs = faqs.filter((faq) => faq.productId === currProduct.id);
 
-  // try {
-  //   const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/getFirestore');
+  var productData;
+  var faqData;
+  var reviewData;
 
-  //   if (!response.ok) {
-  //     const message = `An error occured: ${response.statusText}`
-  //     window.alert(message);
-  //     return;
-  //   }
+  try {
+    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
+    const faqsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreFAQs');
+    const reviewsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreReviews');
 
-  //   shopItems = await response.json();
-  //   console.log(shopItems);
+    const [ products, faqs, reviews ] = await Promise.all([
+      productsPromise,
+      faqsPromise,
+      reviewsPromise
+    ])
 
-  // } catch (e) {
-  //   console.log(e.message);
-  // }
+    productData = await products.json();
+    faqData = await faqs.json();
+    reviewData = await reviews.json();
 
-  // const currShopItem = shopItems.find((item) => item.name === shopItemName);
-  // currShopItem.img = currShopItem.img.replace('jpeg', 'webp')
+  } catch (e) {
+    console.log(e.message);
+  }
+
+  const currProduct = productData.find((product) => product.name === shopItemName);
+  const currReviews = reviewData.filter((review) => review.product_id === currProduct.item_id);
+  const currFaqs = faqData.filter((faq) => faq.product_id === currProduct.item_id);
 
   return (
     <div>

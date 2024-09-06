@@ -71,7 +71,7 @@ export default function ProductCard({currProduct, currReviews, currFaqs}) {
               <Image 
                 priority
                 alt={currProduct.description} 
-                src={`${currProduct.img}`}
+                src={currProduct.image_src.includes('https') ? currProduct.image_src : `/${currProduct.image_src}`}
                 className="object-cover object-center"
                 width={1000}
                 height={1300}
