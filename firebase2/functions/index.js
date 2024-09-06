@@ -22,6 +22,42 @@ exports.getFirestore = functions.https.onRequest(async (req, res) => {
   }
 })
 
+exports.getFirestoreFAQs = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  const { getFirestore } = require('firebase-admin/firestore');
+  try {
+    const db = getFirestore();
+    const faqsRef = db.collection('faqs');
+    const snapshot = await faqsRef.get();   
+    let faqs = []
+    snapshot.forEach((doc) => {
+      faqs.push(doc.data())
+    })
+    res.status(200).send(faqs);
+  } catch (error) {
+    console.error('Error fetching faqs:', error);
+    res.status(500).json({error: error.message})
+  }
+})
+
+exports.getFirestoreReviews = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  const { getFirestore } = require('firebase-admin/firestore');
+  try {
+    const db = getFirestore();
+    const reviewsRef = db.collection('reviews');
+    const snapshot = await reviewsRef.get();   
+    let reviews = []
+    snapshot.forEach((doc) => {
+      reviews.push(doc.data())
+    })
+    res.status(200).send(reviews);
+  } catch (error) {
+    console.error('Error fetching reviews:', error);
+    res.status(500).json({error: error.message})
+  }
+})
+
 // https endpoint creates stripe checkout session
 exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
