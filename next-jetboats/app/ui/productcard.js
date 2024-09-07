@@ -71,7 +71,7 @@ export default function ProductCard({currProduct, currReviews, currFaqs}) {
               <Image 
                 priority
                 alt={currProduct.description} 
-                src={currProduct.image_src.includes('https') ? currProduct.image_src : `/${currProduct.image_src}`}
+                src={currProduct.image_src.includes('https') ? currProduct.image_src : `${currProduct.image_src}`}
                 className="object-cover object-center"
                 width={1000}
                 height={1300}
@@ -239,7 +239,7 @@ export default function ProductCard({currProduct, currReviews, currFaqs}) {
                   {currReviews.map((review, reviewIdx) => (
                     <div key={reviewIdx} className="flex space-x-4 text-sm text-gray-500">
                       <div className="flex-none py-10">
-                        <img alt="" src={review.avatarSrc} className="h-10 w-10 rounded-full bg-gray-100" />
+                        <img alt="" src={review.avatar_src} className="h-10 w-10 rounded-full bg-gray-100" />
                       </div>
                       <div className={classNames(reviewIdx === 0 ? '' : 'border-t border-gray-200', 'py-10')}>
                         <h3 className="font-medium text-gray-900">{review.author}</h3>

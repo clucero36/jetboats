@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default async function Proudcts() {
   var shopItems;
-  
+
   try {
     const response = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
   
@@ -27,7 +27,7 @@ export default async function Proudcts() {
               width={1000}
               height={1000}
               alt={product.description}
-              src={product.image_src.includes('https') ? product.image_src : `/${product.image_src}`}
+              src={product.image_src.includes('https') ? product.image_src : `${product.image_src}`}
               className="h-full w-full object-cover object-center group-hover:opacity-75"
             />
             </div>
