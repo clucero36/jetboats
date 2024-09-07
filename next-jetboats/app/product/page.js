@@ -4,14 +4,14 @@ export default async function Page({ searchParams }) {
 
   const shopItemName = searchParams.name;
 
-  var productData;
-  var faqData;
-  var reviewData;
+  let productData;
+  let faqData;
+  let reviewData;
 
   try {
-    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
-    const faqsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreFAQs');
-    const reviewsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreReviews');
+    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore', { cache: 'no-store' });
+    const faqsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreFAQs', { cache: 'no-store' });
+    const reviewsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreReviews', { cache: 'no-store' });
 
     const [ products, faqs, reviews ] = await Promise.all([
       productsPromise,
@@ -28,8 +28,8 @@ export default async function Page({ searchParams }) {
   }
 
   const currProduct = productData.find((product) => product.name === shopItemName);
-  const currReviews = reviewData.filter((review) => review.product_id === currProduct.item_id);
-  const currFaqs = faqData.filter((faq) => faq.product_id === currProduct.item_id);
+  const currReviews = reviewData.filter((review) => review.product_id === currProduct.product_id);
+  const currFaqs = faqData.filter((faq) => faq.product_id === currProduct.product_id);
 
   return (
     <div>

@@ -18,5 +18,5 @@ export default function RootLayout({ children }) {
           </Context>
         </body>
     </html>
-  );
+  )
 }
