@@ -1,7 +1,7 @@
 
 export async function fetchShopItems() {
   try {
-    const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
+    const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore', { cache: 'no-store' });
     if (shopItemsRes.ok)
       return shopItemsRes.json();
   } catch (error) {
@@ -12,9 +12,9 @@ export async function fetchShopItems() {
 
 export async function fetchCurrentProductData(productName) {
   try {
-    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
-    const faqsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreFAQs');
-    const reviewsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreReviews');
+    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore', { cache: 'no-store' });
+    const faqsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreFAQs', { cache: 'no-store' });
+    const reviewsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreReviews', { cache: 'no-store' });
 
     const data = await Promise.all([
       productsPromise,
