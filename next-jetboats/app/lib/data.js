@@ -12,7 +12,7 @@ export async function fetchShopItems() {
 
 export async function fetchCurrentProductData(productName) {
   try {
-    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore', { cache: 'no-store' });
+    const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
     const faqsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreFAQs', { cache: 'no-store' });
     const reviewsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestoreReviews', { cache: 'no-store' });
 
