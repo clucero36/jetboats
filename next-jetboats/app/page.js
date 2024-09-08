@@ -2,7 +2,6 @@ import { nerko_one } from '@/app/ui/fonts';
 import Products from "./ui/products"
 import Image from "next/image"
 
-
 export default function Home() {
   return (
     <main>

@@ -1,36 +1,16 @@
-'use client'
-import { useState, useEffect } from 'react'
-
 import Image from "next/image";
 import Link from "next/link";
+import { fetchShopItems } from "../lib/data";
 
-export default function Proudcts() {
-  const [shopItems, setShopItems] = useState(null);
+export default async function Proudcts() {
 
-  useEffect(() => {
-    async function getFirestore() {
-      try {
-        const response = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
-      
-        if (response.ok) {
-          const shopItemsData = await response.json();
-          setShopItems(shopItemsData);
-        } else {
-          throw new Error(response.status);
-        }
-      } catch (error) {
-        console.error('Fetch', error);
-      }
-    }
-    getFirestore();
-  }, [])
+  const shopItems = await fetchShopItems();
 
   return (
     <div className="mx-auto px-4 py-8 sm:px-6 lg:max-w-7xl lg:px-8">
       <h2 className="sr-only">Products</h2>
       <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         {
-          shopItems !== null ?
           shopItems.map((product) => (
             <Link key={product.name} href={`/product?name=${product.name}`} className="group">
               <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-200">
@@ -46,11 +26,7 @@ export default function Proudcts() {
               <p className="mt-1 text-lg font-medium text-gray-900">${parseInt(product.price_in_cents)/100}</p>
             </Link>
           ))
-          :
-          <div>
-            Loading...
-          </div>
-        } 
+        }
       </div>
     </div>
   )
