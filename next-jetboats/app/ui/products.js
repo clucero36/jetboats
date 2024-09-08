@@ -1,10 +1,33 @@
+'use client'
+
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { fetchShopItems } from "../lib/data";
 
-export default async function Proudcts() {
+export default function Proudcts() {
 
-  const shopItems = await fetchShopItems()
+  const [shopItems, setShopItems] = useState(null);
+
+  useEffect(() => {
+    async function getFirestore() {
+      try {
+        const response = await fetchShopItems();
+
+        if (response) {
+          const shopItemsData = response;
+
+          setShopItems(shopItemsData);
+        } else {
+          throw new Error(response.status);
+        }
+      } catch (error) {
+        console.error('Fetch', error);
+      }
+    }
+
+    getFirestore();
+  }, [])
 
   if (!shopItems) {
     return null;
