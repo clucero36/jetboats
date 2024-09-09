@@ -68,10 +68,12 @@ export default function ShoppingCart() {
                           {cart.map((product, index) => (
                             <li key={index} className="flex py-6">
                               <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                <img
+                                <Image
                                   alt={product.description}
-                                  src={product.image_src}
+                                  src={product.image_src.includes('https') ? product.image_src : `/${product.image_src}`}
                                   className="h-full w-full object-cover object-center"
+                                  width={94}
+                                  height={94}
                                 />
                               </div>
                               <div className="ml-4 flex flex-1 flex-col">
