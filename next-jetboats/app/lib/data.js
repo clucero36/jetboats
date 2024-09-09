@@ -2,7 +2,7 @@
 export async function fetchShopItems() {
   try {
     const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore', { cache: 'no-store' });
-    shopItemData = await shopItemsRes.json();
+    const shopItemData = await shopItemsRes.json();
     return shopItemData;
   } catch (error) {
     console.error('Firebase Error:', error);

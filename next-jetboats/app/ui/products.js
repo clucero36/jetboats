@@ -1,11 +1,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { fetchShopItems } from "../lib/data";
 
-export default async function Proudcts() {
+export default async function Proudcts({ shopItems }) {
 
-  const shopItems = await fetchShopItems();
+
 
   if (shopItems) {
     return (
