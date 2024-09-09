@@ -1,37 +1,11 @@
-'use client'
 
-import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { fetchShopItems } from "../lib/data";
 
-export default function Proudcts() {
+export default async function Proudcts() {
 
-  const [shopItems, setShopItems] = useState(null);
-
-  useEffect(() => {
-    async function getFirestore() {
-      try {
-        const response = await fetchShopItems();
-
-        if (response) {
-          const shopItemsData = response;
-
-          setShopItems(shopItemsData);
-        } else {
-          throw new Error(response.status);
-        }
-      } catch (error) {
-        console.error('Fetch', error);
-      }
-    }
-
-    getFirestore();
-  }, [])
-
-  if (!shopItems) {
-    return null;
-  }
+  const shopItems = await fetchShopItems();
 
   if (shopItems) {
     return (
@@ -42,13 +16,13 @@ export default function Proudcts() {
             shopItems.map((product) => (
               <Link key={product.name} href={`/product?name=${product.name}`} className="group">
                 <div className="relative aspect-[3/4] w-full overflow-hidden rounded-lg bg-gray-200">
-                <Image
-                  width={1000}
-                  height={1000}
-                  alt={product.description}
-                  src={product.image_src.includes('https') ? product.image_src : `/${product.image_src}`}
-                  className="h-full w-full object-cover object-center group-hover:opacity-75"
-                />
+                  <Image
+                    width={1000}
+                    height={1000}
+                    alt={product.description}
+                    src={product.image_src.includes('https') ? product.image_src : `/${product.image_src}`}
+                    className="h-full w-full object-cover object-center group-hover:opacity-75"
+                  />
                 </div>
                 <h3 className="mt-4 text-sm text-gray-700">{product.name}</h3>
                 <p className="mt-1 text-lg font-medium text-gray-900">${parseInt(product.price_in_cents)/100}</p>
@@ -59,5 +33,5 @@ export default function Proudcts() {
       </div>
     )
   }
-
+  
 }

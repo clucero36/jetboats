@@ -2,8 +2,8 @@
 export async function fetchShopItems() {
   try {
     const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore', { cache: 'no-store' });
-    if (shopItemsRes.ok)
-      return shopItemsRes.json();
+    shopItemData = await shopItemsRes.json();
+    return shopItemData;
   } catch (error) {
     console.error('Firebase Error:', error);
     throw new Error('Failed to fetch shopItem data.');
