@@ -1,11 +1,8 @@
 import { nerko_one } from '@/app/ui/fonts';
 import Products from "./ui/products"
 import Image from "next/image"
-import { fetchShopItems } from './lib/data';
 
-export default async function Home() {
-
-  const shopItems = await fetchShopItems();
+export default function Home() {
 
   return (
     <main>
@@ -24,7 +21,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <Products shopItems={shopItems}/>
+      <Products />
     </main>
   )
 }
