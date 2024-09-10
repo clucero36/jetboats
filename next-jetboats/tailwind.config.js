@@ -19,6 +19,13 @@ module.exports = {
         '3/4': '3 / 4',
       },
     },
+    keyframes: {
+      shimmer: {
+        '100%': {
+          transform: 'translateX(100%)',
+        },
+      },
+    },
   },
   plugins: [],
 };

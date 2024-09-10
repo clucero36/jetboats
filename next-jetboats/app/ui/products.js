@@ -4,23 +4,26 @@ import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { fetchShopItems } from '../lib/data';
+import { ProductsSkeleton } from './skeletons';
 
 export default function Proudcts() {
 
   const [shopItems, setShopItems] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
 
     const getFirestore = async () => {
       const result = await fetchShopItems();
       setShopItems(result);
+      setIsLoading(false);
     }
 
     getFirestore();
   }, [])
 
-  if (!shopItems) {
-    return null;
+  if (isLoading) {
+    return <ProductsSkeleton />
   }
 
   return (

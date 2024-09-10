@@ -26,9 +26,9 @@ export default function Footer() {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.products.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -38,9 +38,9 @@ export default function Footer() {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.customerService.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -52,9 +52,9 @@ export default function Footer() {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.company.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>
@@ -64,9 +64,9 @@ export default function Footer() {
                     <ul role="list" className="mt-6 space-y-6">
                       {footerNavigation.legal.map((item) => (
                         <li key={item.name} className="text-sm">
-                          <a href={item.href} className="text-gray-500 hover:text-gray-600">
+                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
                             {item.name}
-                          </a>
+                          </Link>
                         </li>
                       ))}
                     </ul>

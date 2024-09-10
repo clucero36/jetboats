@@ -1,6 +1,7 @@
 import { nerko_one } from '@/app/ui/fonts';
 import Products from "./ui/products"
 import Image from "next/image"
+import { Suspense } from 'react';
 
 export default function Home() {
 
@@ -21,7 +22,13 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Products />
+      <Suspense fallback={<Loading />}>
+        <Products />
+      </Suspense>
     </main>
   )
+}
+
+function Loading() {
+  return <h2>🌀 Loading...</h2>;
 }
