@@ -4,7 +4,7 @@ import { redirect } from 'next/navigation'
 
 export async function Checkout(cart) {
 
-  const response = await fetch('https://us-central1-fir-web-2d06c.cloudfunctions.net/createCheckoutSession', {
+  const response = await fetch('https://us-central1-jetboats.cloudfunctions.net/createCheckoutSession', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

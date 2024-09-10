@@ -62,7 +62,7 @@ exports.getFirestoreReviews = functions.https.onRequest(async (req, res) => {
 exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', '*');
-  const stripe = require("stripe")(functions.config().stripe.s_key);
+  const stripe = require("stripe")(functions.config().stripe.s_key2);
   try {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -78,6 +78,8 @@ exports.createCheckoutSession = functions.https.onRequest(async (req, res) => {
               name: cItem.name,
               metadata: {
                 size: cItem.purchaseSize,
+                image_src: cItem.image_src,
+                product_description: cItem.description,
               },
             },
             unit_amount: cItem.price_in_cents,
@@ -99,7 +101,7 @@ exports.getSession = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', '*');
   res.setHeader("Access-Control-Allow-Methods", "GET");
-  const stripe = require("stripe")(functions.config().stripe.s_key);
+  const stripe = require("stripe")(functions.config().stripe.s_key2);
   try {
     const session = await stripe.checkout.sessions.retrieve(req.headers.session_id);
     res.send({session: await session});
@@ -113,7 +115,7 @@ exports.getLineItems = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', '*');
   res.set("Access-Control-Allow-Methods", "GET");
-  const stripe = require("stripe")(functions.config().stripe.s_key);
+  const stripe = require("stripe")(functions.config().stripe.s_key2);
   try {
     const lineItems = await stripe.checkout.sessions.listLineItems(req.headers.session_id, {expand: ['data.price.product']});
     res.send({lineItems: await lineItems})

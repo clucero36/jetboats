@@ -37,3 +37,39 @@ export async function fetchCurrentProductData(productName) {
     throw new Error('Failed to fetch current product data.');
   }
 }
+
+export async function getCheckoutSessionLineItems(session_id) {
+  try {
+    const checkoutSessionPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getSession', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'session_id': session_id,
+      },
+    });
+
+    const checkoutSessionLineItemsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getLineItems', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'session_id': session_id,
+      },
+    });
+
+    const data = await Promise.all([
+      checkoutSessionPromise,
+      checkoutSessionLineItemsPromise
+    ]);
+
+    const checkoutSessionObj = await data[0].json();
+    const lineItemsObj = await data[1].json();
+
+    const checkoutSession = checkoutSessionObj.session;
+    const lineItems = lineItemsObj.lineItems;
+    
+    return { checkoutSession, lineItems };
+  } catch (error) {
+    console.error('Fetch Session Error:', error);
+    throw new Error('Failed to fetch current checkout session.');
+  }
+}
