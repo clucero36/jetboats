@@ -47,6 +47,10 @@ export default async function Page({ searchParams }) {
                         <dt className="font-medium text-gray-900">Price</dt>
                         <dd className="ml-2 text-gray-700">${product.amount_total/100}</dd>
                       </div>
+                      <div className="flex pl-4 sm:pl-6">
+                        <dt className="font-medium text-gray-900">Price</dt>
+                        <dd className="ml-2 text-gray-700">${product.price.product.metadata.size}</dd>
+                      </div>
                     </dl>
                   </div>
                 </div>

@@ -73,3 +73,56 @@ export async function getCheckoutSessionLineItems(session_id) {
     throw new Error('Failed to fetch current checkout session.');
   }
 }
+
+export async function expireSession(session_id) {
+  try {
+    const response = await fetch('https://us-central1-jetboats.cloudfunctions.net/expireSession', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'session_id': session_id,
+      },
+    });
+
+    const expiredSession = await response.json();
+    return expiredSession;
+  } catch (error) {
+    console.error('Expire Session Error:', error);
+    throw new Error('Failed to expire current checkout session.');
+  }
+}
+
+export const footerNavigation = {
+  products: [
+    { name: 'Tees', href: '#' },
+    { name: 'Accessories', href: '#' },
+  ],
+  customerService: [
+    { name: 'Contact', href: '/contact' },
+    { name: 'Shipping', href: '#' },
+    { name: 'Returns', href: '#' },
+    { name: 'Warranty', href: '#' },
+    { name: 'Secure Payments', href: '#' },
+    { name: 'FAQ', href: '#' },
+    { name: 'Find a store', href: '#' },
+  ],
+  company: [
+    { name: 'Who we are', href: '#' },
+    { name: 'Sustainability', href: '#' },
+    { name: 'Press', href: '#' },
+    { name: 'Careers', href: '#' },
+    { name: 'Terms & Conditions', href: '#' },
+    { name: 'Privacy', href: '#' },
+  ],
+  legal: [
+    { name: 'Terms of Service', href: '#' },
+    { name: 'Return Policy', href: '#' },
+    { name: 'Privacy Policy', href: '#' },
+    { name: 'Shipping Policy', href: '#' },
+  ],
+  bottomLinks: [
+    { name: 'Accessibility', href: '#' },
+    { name: 'Privacy', href: '#' },
+    { name: 'Terms', href: '#' },
+  ],
+}

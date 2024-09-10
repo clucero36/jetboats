@@ -1,5 +1,6 @@
 import { inter } from "./ui/fonts";
 import NavBar from "./ui/navbar";
+import Footer from "./ui/footer";
 import "./globals.css";
 import Context from "./context";
 
@@ -15,6 +16,7 @@ export default function RootLayout({ children }) {
           <Context>
             <NavBar />
             {children}
+            <Footer />
           </Context>
         </body>
     </html>
