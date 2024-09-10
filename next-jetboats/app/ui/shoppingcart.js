@@ -22,6 +22,8 @@ export default function ShoppingCart() {
     })
     setTotalPrice(price);
     setTotalQuanity(totalQuantity);
+    if (cart.length !== 0)
+      setOpen(true);
   }, [cart])
 
   return (

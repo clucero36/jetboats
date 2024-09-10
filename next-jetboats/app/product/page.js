@@ -1,5 +1,7 @@
 import ProductCard from "../ui/productcard";
 import { fetchCurrentProductData } from "../lib/data";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export default async function Page({ searchParams }) {
 
@@ -9,7 +11,9 @@ export default async function Page({ searchParams }) {
 
   return (
     <div>
-      <ProductCard currProduct={currProduct} currReviews={currReviews} currFaqs={currFaqs} />
+      <Suspense fallback={<Loading />}>
+        <ProductCard currProduct={currProduct} currReviews={currReviews} currFaqs={currFaqs} />
+      </Suspense>
     </div>
   )
 }

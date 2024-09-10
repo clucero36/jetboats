@@ -1,12 +1,11 @@
-
-import { expireSession } from "../lib/data";
+import { expireSession } from "@/app/lib/data";
 import Link from "next/link";
 
 export default async function Page({ searchParams }) {
 
   const session_id = searchParams.session_id;
-
   const expiredSession = await expireSession(session_id);
+  console.log(expiredSession)
 
   return (
     <div className="bg-white">

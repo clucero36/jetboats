@@ -1,5 +1,4 @@
-
-import { getCheckoutSessionLineItems } from "../lib/data"
+import { getCheckoutSessionLineItems } from "@/app/lib/data";
 import Image from "next/image";
 
 export default async function Page({ searchParams }) {
