@@ -8,7 +8,7 @@ export default function Page() {
           <h2 className="text-3xl font-bold tracking-tight text-gray-900">Our offices</h2>
           <p className="mt-6 text-lg leading-8 text-gray-600">
           Your go-to destination for stylish clothing and premium gear designed for boating 
-          enthusiasts just like us. If you have any questions or concers, don't hesitate to reach out to us. 
+          enthusiasts just like us. If you have any questions or concers, don&apos;t hesitate to reach out to us. 
           </p>
           <p className="text-sky-400">llucero3696@gmail.com</p>
         </div>
