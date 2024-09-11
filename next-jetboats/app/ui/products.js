@@ -6,21 +6,24 @@ import Link from "next/link";
 import { fetchShopItems } from '../lib/data';
 import { ProductsSkeleton } from './skeletons';
 
-export default function Proudcts() {
-
+export default function Products({ productType }) {
+  
   const [shopItems, setShopItems] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
 
     const getFirestore = async () => {
-      const result = await fetchShopItems();
+      let result = await fetchShopItems();
+      if (productType) {
+        result = result.filter((product) => product.category === productType)
+      }
       setShopItems(result);
       setIsLoading(false);
     }
 
     getFirestore();
-  }, [])
+  }, [productType])
 
   if (isLoading) {
     return <ProductsSkeleton />

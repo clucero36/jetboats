@@ -94,23 +94,18 @@ export async function expireSession(session_id) {
 
 export const footerNavigation = {
   products: [
-    { name: 'Tees', href: '#' },
-    { name: 'Accessories', href: '#' },
+    { name: 'Tees', href: '/categories?type=tees' },
+    { name: 'Accessories', href: '/categories?type=accessories' },
   ],
   customerService: [
     { name: 'Contact', href: '/contact' },
     { name: 'Shipping', href: '#' },
     { name: 'Returns', href: '#' },
     { name: 'Warranty', href: '#' },
-    { name: 'Secure Payments', href: '#' },
     { name: 'FAQ', href: '#' },
-    { name: 'Find a store', href: '#' },
   ],
   company: [
     { name: 'Who we are', href: '#' },
-    { name: 'Sustainability', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Careers', href: '#' },
     { name: 'Terms & Conditions', href: '#' },
     { name: 'Privacy', href: '#' },
   ],
