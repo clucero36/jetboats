@@ -5,7 +5,7 @@ const shimmer =
 export function ProductsSkeleton() {
 
   return (
-    <div className="flex mx-auto w-3/5 justify-around my-16">
+    <div className="flex flex-col sm:flex-row mx-auto w-4/5 sm:w-3/5 justify-around my-16 gap-4 sm-gap-0">
       <ProductSkeleton />
       <ProductSkeleton />
       <ProductSkeleton />
@@ -17,7 +17,7 @@ export function ProductsSkeleton() {
 export function ProductSkeleton() {
   return (
     <div className={`${shimmer} overflow-hidden relative relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm h`}>
-      <div className="mx-auto px-24 py-36 sm:px-6 lg:max-w-7xl lg:px-8 ">
+      <div className="mx-auto px-32 py-44 sm:px-6 lg:max-w-7xl lg:px-8 ">
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
         </div>
       </div>
