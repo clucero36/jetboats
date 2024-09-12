@@ -1,8 +1,6 @@
 
 export async function fetchShopItems() {
   try {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-
     const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
     const shopItemData = await shopItemsRes.json();
     return shopItemData;
@@ -95,31 +93,11 @@ export async function expireSession(session_id) {
 }
 
 export const footerNavigation = {
-  products: [
-    { name: 'Tees', href: '/categories?type=tees' },
-    { name: 'Accessories', href: '/categories?type=accessories' },
-  ],
-  customerService: [
-    { name: 'Contact', href: '/contact' },
-    { name: 'Shipping', href: '#' },
-    { name: 'Returns', href: '#' },
-    { name: 'Warranty', href: '#' },
-    { name: 'FAQ', href: '#' },
-  ],
   company: [
-    { name: 'Who we are', href: '#' },
+    { name: 'About', href: '#' },
     { name: 'Terms & Conditions', href: '#' },
-    { name: 'Privacy', href: '#' },
-  ],
-  legal: [
-    { name: 'Terms of Service', href: '#' },
-    { name: 'Return Policy', href: '#' },
+    { name: 'Shipping & Return Policy', href: '#' },
     { name: 'Privacy Policy', href: '#' },
-    { name: 'Shipping Policy', href: '#' },
-  ],
-  bottomLinks: [
-    { name: 'Accessibility', href: '#' },
-    { name: 'Privacy', href: '#' },
-    { name: 'Terms', href: '#' },
+    { name: 'FAQ', href: '#' },
   ],
 }
