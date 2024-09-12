@@ -1,11 +1,13 @@
 import { nerko_one } from './ui/fonts';
 import Products from "./ui/products"
 import Image from "next/image"
+import { ProductsSkeleton } from './ui/skeletons';
+import { Suspense } from 'react';
 
 export default function Home() {
 
   return (
-    <main>
+    <>
       <div className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
         <Image
           priority
@@ -21,8 +23,10 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <Products productType={null} />
-    </main>
+      <Suspense fallback={<ProductsSkeleton />}>
+        <Products />
+      </Suspense>
+    </>
   )
 }
 
