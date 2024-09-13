@@ -10,10 +10,10 @@ export default function NavBar() {
         <Link href="/">
           <BeakerIcon className="size-6" />
         </Link>
-        <Link href=''>
+        <Link href='/categories/shirts'>
           <span className="text-sm text-gray-500">Shirts</span>
         </Link>
-        <Link href=''>
+        <Link href='/categories/accessories'>
           <span className="text-sm text-gray-500">Accessories</span>
         </Link>
       </div>
