@@ -12,7 +12,7 @@ export default async function Products() {
     <section className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-4 xl:gap-x-8 w-4/5 mx-auto my-8">
       {
         homePageItems.map((product) => (
-          <Link key={product.name} href={`/product?name=${product.name}`} className="group">
+          <Link key={product.name} href={`/product/${product.name}`} className="group">
             <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
               <Image
                 width={1000}
