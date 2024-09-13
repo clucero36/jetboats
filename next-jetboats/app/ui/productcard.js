@@ -8,7 +8,7 @@ import { StarIcon } from '@heroicons/react/20/solid'
 import { Tab, TabGroup, TabList, TabPanel, TabPanels, Radio, RadioGroup } from '@headlessui/react'
 
 export default function ProductCard({currProduct, currReviews, currFaqs}) {
-
+  console.log(currProduct, currFaqs, currReviews);
   const [size, setSize] = useState(null)
   const {setCart} = useContext(CartContext);  
   const license = {
