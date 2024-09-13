@@ -10,6 +10,20 @@ export async function fetchShopItems() {
   }
 }
 
+export async function fetchCategoryItems(category) {
+  try {
+    const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
+    const shopItemData = await shopItemsRes.json();
+    
+    const categoryItems = shopItemData.filter((product) => product.category === category);
+    
+    return categoryItems;
+  } catch (error) {
+    console.error('Firebase Error:', error);
+    throw new Error('Failed to fetch Category Items');
+  }
+}
+
 export async function fetchCurrentProductData(productName) {
   try {
     const productsPromise = fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
