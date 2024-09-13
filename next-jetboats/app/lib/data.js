@@ -29,11 +29,8 @@ export async function fetchCurrentProductData(productName) {
     const currProduct = productData.find((product) => product.name === productName);
     const currReviews = reviewData.filter((review) => review.product_id === currProduct.product_id);
     const currFaqs = faqData.filter((faq) => faq.product_id === currProduct.product_id);
-    
-    console.log(currProduct, currReviews, currFaqs);
 
     return { currProduct, currReviews, currFaqs };
-
   } catch (error) {
     console.error('Fetch Error:', error);
     throw new Error('Failed to fetch current product data.');
