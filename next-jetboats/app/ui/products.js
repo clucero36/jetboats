@@ -9,7 +9,7 @@ export default async function Products() {
   if (!homePageItems) return null;
 
   return (
-    <section className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-4 xl:gap-x-8 w-4/5  mx-auto my-8">
+    <section className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-4 xl:gap-x-8 w-4/5 mx-auto my-8">
       {
         homePageItems.map((product) => (
           <Link key={product.name} href={`/product?name=${product.name}`} className="group">
