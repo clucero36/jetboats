@@ -1,6 +1,7 @@
-
+import { BeakerIcon } from "@heroicons/react/24/outline";
 import { footerNavigation } from "../lib/data";
 import Link from "next/link";
+import { Gi3dStairs } from "react-icons/gi";
 
 export default function Footer() {
   return (
@@ -8,66 +9,37 @@ export default function Footer() {
       <h2 id="footer-heading" className="sr-only">
         Footer
       </h2>
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-[1640px] px-4 sm:px-6 lg:px-8">
         <div className="border-t border-gray-200">
-          <div className="pb-20 pt-16">
-            <div className="mx-auto mt-16 max-w-5xl xl:grid xl:grid-cols-2 xl:gap-8">
-              <div className="grid grid-cols-2 gap-8 xl:col-span-2">
-                <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900">Products</h3>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {footerNavigation.products.map((item) => (
-                        <li key={item.name} className="text-sm">
-                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900">Customer Service</h3>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {footerNavigation.customerService.map((item) => (
-                        <li key={item.name} className="text-sm">
-                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="space-y-12 md:grid md:grid-cols-2 md:gap-8 md:space-y-0">
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900">Company</h3>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {footerNavigation.company.map((item) => (
-                        <li key={item.name} className="text-sm">
-                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-medium text-gray-900">Legal</h3>
-                    <ul role="list" className="mt-6 space-y-6">
-                      {footerNavigation.legal.map((item) => (
-                        <li key={item.name} className="text-sm">
-                          <Link href={item.href} className="text-gray-500 hover:text-gray-600">
-                            {item.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+          <div className="py-12">
+            <div className="flex gap-12">
+              <Link href="/">
+              <div className="flex gap-2">
+                <BeakerIcon className="size-6" />
+                <span className="text-sm text-gray-500">JetBoats Classifieds</span>
               </div>
+              </Link>
+              <ul role="list" className="space-y-6">
+                {footerNavigation.company.map((item) => (
+                  <li key={item.name} className="text-sm">
+                    <Link href={item.href} className="text-gray-500 hover:text-gray-600">
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
+        </div>
+      </div>
+      <div className="border-t border-gray-200">
+        <div className="flex justify-between mx-auto max-w-[1640px] px-4 sm:px-6 lg:px-8 py-6">
+          <div className='text-sm text-gray-500'>
+            © 2023-2024 JBC, Inc. All rights reserved.
+          </div>
+          <p className='flex text-sm text-gray-500'>
+            Created by <Gi3dStairs className='h-[20px] w-[20px] ml-[4px] mr-[2px]' />Luis Lucero
+          </p>
         </div>
       </div>
     </footer>

@@ -8,7 +8,7 @@ export default function Page({ searchParams }) {
       <div className="mx-auto lg:mx-0 text-center">
         <h2 className={`text-6xl tracking-tight ${nerko_one.className} antialiased`}>{title}</h2>
       </div>
-      <Products productType={searchParams.type}/>
+      <Products />
     </div>
   )
 }
