@@ -4,6 +4,14 @@ const nextConfig = {
   images: {
     domains: ['tailwindui.com', 'images.unsplash.com'],
   },
+  logging: {
+    fetches: {
+      fullUrl: true,
+      hmrRefreshes: true,
+    },
+  },
 };
+
+
 
 export default nextConfig;

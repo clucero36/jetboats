@@ -6,8 +6,6 @@ import { Suspense } from "react";
 
 export default async function Page({ params }) {
 
-  console.log(params.name)
-
   const { currProduct, currReviews, currFaqs } = await fetchCurrentProductData(params.name);
 
   return (

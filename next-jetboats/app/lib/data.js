@@ -107,10 +107,10 @@ export async function expireSession(session_id) {
 
 export const footerNavigation = {
   company: [
-    { name: 'About', href: '#' },
-    { name: 'Terms & Conditions', href: '#' },
-    { name: 'Shipping & Return Policy', href: '#' },
-    { name: 'Privacy Policy', href: '#' },
-    { name: 'FAQ', href: '#' },
+    { name: 'About', href: '/about' },
+    { name: 'Terms & Conditions', href: '/terms-conditions' },
+    { name: 'Shipping & Return Policy', href: '/shipping-return-policy' },
+    { name: 'Privacy Policy', href: '/privacy-policy' },
+    { name: 'Contact', href: '/contact' },
   ],
 }

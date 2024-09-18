@@ -4,7 +4,7 @@ Current Features:
   - Item Shop Display
   - Shopping Cart Drawer
   - Stripe Checkout Integration
-  - Shop, Item Detail, Checkout, Success, Cancel, Contact Pages
+  - Shop, Item Detail, Cateogories, Checkout, Success, Cancel, Contact Pages
   - Firebase Cloud Functions 
   - Firestore Database
   - Context API
@@ -12,7 +12,9 @@ Current Features:
 
 TO DO:
 
-- Stream Project Cards
+- CI/CD
+
+- Testing
 
 To Simulate a Successful Checkout:
 
