@@ -16,7 +16,7 @@ export default function Footer() {
               <Link href="/">
               <div className="flex flex-wrap gap-2">
                 <BeakerIcon className="size-6" />
-                <span className="text-sm text-gray-500">JetBoats Classifieds</span>
+                <span className="text-sm text-gray-500">Jet Boat Classifieds</span>
               </div>
               </Link>
               <ul role="list" className="space-y-6 text-left">
