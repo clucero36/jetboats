@@ -129,7 +129,7 @@ exports.expireSession = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   res.set('Access-Control-Allow-Headers', '*');
   res.set("Access-Control-Allow-Methods", "POST");
-  const stripe = require("stripe")(functions.config().stripe.s_key);
+  const stripe = require("stripe")(functions.config().stripe.s_key2);
   try {
     const session = await stripe.checkout.sessions.expire(req.headers.session_id);
     res.send(session);
