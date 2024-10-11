@@ -2,7 +2,7 @@
 import ProductDetails from './productdetails';
 import ProductPanel from './productpanel';
 
-export default function ProductCard({currProduct, currReviews, currFaqs}) {
+export default function Product({currProduct, currReviews, currFaqs}) {
 
   return (
     <div className="bg-white">

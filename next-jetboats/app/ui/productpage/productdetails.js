@@ -1,7 +1,7 @@
 'use client'
 
 import { useContext, useState } from 'react';
-import { CartContext } from '../context';
+import { CartContext } from '@/app/context';
 import Image from 'next/image';
 
 import { Radio, RadioGroup } from '@headlessui/react'

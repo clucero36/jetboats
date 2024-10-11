@@ -1,5 +1,6 @@
 
 export async function fetchShopItems() {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   try {
     const shopItemsRes = await fetch('https://us-central1-jetboats.cloudfunctions.net/getFirestore');
     const shopItemData = await shopItemsRes.json();
