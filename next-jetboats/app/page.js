@@ -1,5 +1,5 @@
 import { nerko_one } from './ui/fonts';
-import Products from "./ui/products"
+import Products from "@/app/ui/productlists/products"
 import Image from "next/image"
 import { ProductsSkeleton } from './ui/skeletons';
 import { Suspense } from 'react';
