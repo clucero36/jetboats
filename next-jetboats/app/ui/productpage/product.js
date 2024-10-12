@@ -1,8 +1,13 @@
 
 import ProductDetails from './productdetails';
 import ProductPanel from './productpanel';
+import { fetchCurrentProductData } from '@/app/lib/data';
 
-export default function Product({currProduct, currReviews, currFaqs}) {
+export default async function Product({ name }) {
+
+  const { currProduct, currReviews, currFaqs } = await fetchCurrentProductData(name);
+
+  if (!currProduct || !currReviews || !currFaqs) return null;
 
   return (
     <div className="bg-white">
