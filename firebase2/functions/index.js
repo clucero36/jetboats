@@ -22,12 +22,27 @@ exports.getFirestore = functions.https.onRequest(async (req, res) => {
   }
 })
 
+exports.getFirestoreShopItem = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  const { getFirestore } = require('firebase-admin/firestore');
+  try {
+    const db = getFirestore();
+    const shopItemsRef = db.collection('shopItems').where("name", "==", `${req.query.name}`)
+    const snapshot = await shopItemsRef.get();
+    let shopItem = snapshot.docs[0].data();
+    res.status(200).send(shopItem);
+  } catch (error) {
+    console.error('Error fetching shop item:', error);
+    res.status(500).json({error: error.message})
+  }
+})
+
 exports.getFirestoreFAQs = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   const { getFirestore } = require('firebase-admin/firestore');
   try {
     const db = getFirestore();
-    const faqsRef = db.collection('faqs');
+    const faqsRef = db.collection('faqs').where("product_id", "==", `${req.query.product}`);
     const snapshot = await faqsRef.get();   
     let faqs = []
     snapshot.forEach((doc) => {
@@ -45,7 +60,7 @@ exports.getFirestoreReviews = functions.https.onRequest(async (req, res) => {
   const { getFirestore } = require('firebase-admin/firestore');
   try {
     const db = getFirestore();
-    const reviewsRef = db.collection('reviews');
+    const reviewsRef = db.collection('reviews').where("product_id", "==", `${req.query.product}`);
     const snapshot = await reviewsRef.get();   
     let reviews = []
     snapshot.forEach((doc) => {
