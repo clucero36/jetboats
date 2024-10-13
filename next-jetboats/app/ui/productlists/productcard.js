@@ -5,13 +5,13 @@ export default function ProductCard({id, name, price_in_cents, image_src, descri
   return (
     <div>
       <Link key={name} href={`/product/${name}?id=${id}`} className="group">
-        <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
+        <div className="overflow-hidden rounded-lg">
           <Image
-            width={1000}
-            height={1000}
+            width={1500}
+            height={1500}
             alt={description}
             src={image_src.includes('https') ? image_src : `/${image_src}`}
-            className='h-full w-full transition duration-300 ease-in-out group-hover:scale-105'
+            className='transition duration-300 ease-in-out group-hover:scale-105'
           />
         </div>
         <h3 className="mt-4 text-sm text-gray-700">{name}</h3>

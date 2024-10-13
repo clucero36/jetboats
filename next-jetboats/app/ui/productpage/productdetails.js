@@ -65,14 +65,14 @@ export default function ProductDetails({ currProduct }) {
     <>
       {/* Image */}
       <div className="lg:col-span-4 lg:row-end-1">
-        <div className="aspect-h-3 aspect-w-4 overflow-hidden rounded-lg bg-gray-100">
+        <div className="overflow-hidden rounded-lg bg-gray-100">
           <Image 
             priority
             alt={currProduct.description} 
             src={currProduct.image_src.includes('https') ? currProduct.image_src : `/${currProduct.image_src}`}
             className="object-cover object-center"
             width={1000}
-            height={1300}
+            height={1000}
           />
         </div>
       </div>
@@ -85,8 +85,7 @@ export default function ProductDetails({ currProduct }) {
               <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">{currProduct.name}</h1>
               <h2 className="text-xl font-bold tracking-tight text-gray-900 sm:text-3xl">${currProduct.price_in_cents/100}</h2>
             </div>
-            <div className="mt-10">
-
+          <div className="mt-10">
             <fieldset aria-label="Choose a size" className="mt-4">
               <RadioGroup
                 value={size}
