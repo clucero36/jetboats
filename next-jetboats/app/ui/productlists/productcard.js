@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
 
-export default function ProductCard({name, price_in_cents, image_src, description}) {
+export default function ProductCard({id, name, price_in_cents, image_src, description}) {
   return (
     <div>
-      <Link key={name} href={`/product/${name}`} className="group">
+      <Link key={name} href={`/product/${name}?id=${id}`} className="group">
         <div className="relative aspect-[3/4] overflow-hidden rounded-lg">
           <Image
             width={1000}

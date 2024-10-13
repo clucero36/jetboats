@@ -3,9 +3,9 @@ import ProductDetails from './productdetails';
 import ProductPanel from './productpanel';
 import { fetchCurrentProductData } from '@/app/lib/data';
 
-export default async function Product({ name }) {
+export default async function Product({ name, id }) {
 
-  const { currProduct, currReviews, currFaqs } = await fetchCurrentProductData(name);
+  const { currProduct, currReviews, currFaqs } = await fetchCurrentProductData(name, id);
 
   if (!currProduct || !currReviews || !currFaqs) return null;
 
