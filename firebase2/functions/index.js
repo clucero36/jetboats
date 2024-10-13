@@ -22,6 +22,24 @@ exports.getFirestore = functions.https.onRequest(async (req, res) => {
   }
 })
 
+exports.getFirestoreCategoryItems = functions.https.onRequest(async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+  const { getFirestore } = require('firebase-admin/firestore');
+  try {
+    const db = getFirestore();
+    const shopItemsRef = db.collection('shopItems').where("category", "==", `${req.query.category}`);
+    const snapshot = await shopItemsRef.get();   
+    let shopItems = []
+    snapshot.forEach((doc) => {
+      shopItems.push(doc.data())
+    })
+    res.status(200).send(shopItems);
+  } catch (error) {
+    console.error('Error fetching shop items:', error);
+    res.status(500).json({error: error.message})
+  }
+})
+
 exports.getFirestoreShopItem = functions.https.onRequest(async (req, res) => {
   res.set('Access-Control-Allow-Origin', '*');
   const { getFirestore } = require('firebase-admin/firestore');
